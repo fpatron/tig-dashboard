@@ -73,6 +73,7 @@ wget https://raw.githubusercontent.com/fpatron/tig-dashboard/master/exporter/tig
 wget https://raw.githubusercontent.com/fpatron/tig-dashboard/master/exporter/requirements.txt
 ```
 * Setup exporter script
+
 Replace the variables ```PLAYER_IDS``` and ```INNOVATOR_IDS ```
 Example:
 ```
