@@ -9,6 +9,14 @@
       "pluginName": "Prometheus"
     },
     {
+      "name": "DS_YESOREYERAM-INFINITY-DATASOURCE",
+      "label": "yesoreyeram-infinity-datasource",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "yesoreyeram-infinity-datasource",
+      "pluginName": "Infinity"
+    },
+    {
       "name": "DS_EXPRESSION",
       "label": "Expression",
       "description": "",
@@ -1082,20 +1090,7 @@
             ]
           }
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "F"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "s"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 4,
@@ -1103,7 +1098,7 @@
         "x": 5,
         "y": 11
       },
-      "id": 65,
+      "id": 69,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1129,7 +1124,21 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(sum(tig_innovator_data{metric=\"reward\",round=~\"$round|\"}))",
+          "expr": "sum(tig_innovator_data{metric=\"round_earnings\",round=~\"$round|\"})",
+          "hide": true,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(tig_innovator_data{metric=\"round_earnings\",round=~\"$round|\"}[24h]) / 1440)",
           "format": "table",
           "hide": true,
           "instant": true,
@@ -1144,7 +1153,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "tig_block_info{metric=\"blocks_per_round\",round=~\"$round|\"}",
+          "expr": "tig_block_info{metric=\"round_blocks_left\",round=~\"$round|\"}",
           "hide": true,
           "instant": true,
           "legendFormat": "__auto",
@@ -1156,13 +1165,13 @@
             "type": "__expr__",
             "uid": "${DS_EXPRESSION}"
           },
-          "expression": "$A*$B",
+          "expression": "$D+($A*$B)",
           "hide": false,
           "refId": "C",
           "type": "math"
         }
       ],
-      "title": "Estimated TIG (round)",
+      "title": "Estimated TIG (round) (innovator)",
       "type": "stat"
     },
     {
@@ -1550,7 +1559,7 @@
             "uid": "-- Dashboard --"
           },
           "hide": true,
-          "panelId": 65,
+          "panelId": 69,
           "refId": "A"
         }
       ],
@@ -1560,7 +1569,7 @@
           "id": "calculateField",
           "options": {
             "binary": {
-              "left": "C {__name__=\"tig_block_info\", instance=\"127.0.0.1:5002\", job=\"tig\", metric=\"blocks_per_round\", round=\"38\"}",
+              "left": "C {__name__=\"tig_block_info\", instance=\"127.0.0.1:5002\", job=\"tig\", metric=\"round_blocks_left\", round=\"38\"}",
               "operator": "*",
               "right": "$tig_price"
             },
@@ -1682,7 +1691,7 @@
         "x": 3,
         "y": 20
       },
-      "id": 37,
+      "id": 70,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1708,7 +1717,21 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(sum(tig_player_data{metric=\"reward\",round=~\"$round|\"}))",
+          "expr": "sum(tig_player_data{metric=\"round_earnings\",round=~\"$round|\"})",
+          "hide": true,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\"}[24h]) / 1440)",
           "format": "table",
           "hide": true,
           "instant": true,
@@ -1723,7 +1746,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "tig_block_info{metric=\"blocks_per_round\",round=~\"$round|\"}",
+          "expr": "tig_block_info{metric=\"round_blocks_left\",round=~\"$round|\"}",
           "hide": true,
           "instant": true,
           "legendFormat": "__auto",
@@ -1735,7 +1758,7 @@
             "type": "__expr__",
             "uid": "${DS_EXPRESSION}"
           },
-          "expression": "$A*$B",
+          "expression": "$D+($A*$B)",
           "hide": false,
           "refId": "C",
           "type": "math"
@@ -1773,7 +1796,7 @@
         "x": 6,
         "y": 20
       },
-      "id": 60,
+      "id": 71,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1799,7 +1822,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(sum(tig_player_data{metric=\"reward\",round=~\"$round|\"}))*1440",
+          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\"}[24h]))",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -1839,7 +1862,7 @@
         "x": 9,
         "y": 20
       },
-      "id": 38,
+      "id": 72,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1865,7 +1888,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(sum(tig_player_data{metric=\"reward\",round=~\"$round|\"}))*1440*30",
+          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\"}[24h]))*30",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -2284,7 +2307,7 @@
             "uid": "-- Dashboard --"
           },
           "hide": true,
-          "panelId": 37,
+          "panelId": 70,
           "refId": "A"
         }
       ],
@@ -2294,7 +2317,7 @@
           "id": "calculateField",
           "options": {
             "binary": {
-              "left": "C {__name__=\"tig_block_info\", instance=\"127.0.0.1:5002\", job=\"tig\", metric=\"blocks_per_round\", round=\"38\"}",
+              "left": "C {__name__=\"tig_block_info\", instance=\"127.0.0.1:5002\", job=\"tig\", metric=\"round_blocks_left\", round=\"38\"}",
               "operator": "*",
               "right": "$tig_price"
             },
@@ -2362,7 +2385,7 @@
             "type": "datasource",
             "uid": "-- Dashboard --"
           },
-          "panelId": 60,
+          "panelId": 71,
           "refId": "A"
         }
       ],
@@ -2440,7 +2463,7 @@
             "type": "datasource",
             "uid": "-- Dashboard --"
           },
-          "panelId": 38,
+          "panelId": 72,
           "refId": "A"
         }
       ],
@@ -3038,7 +3061,7 @@
         "x": 3,
         "y": 39
       },
-      "id": 63,
+      "id": 73,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -3064,7 +3087,21 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(sum(tig_player_data{metric=\"reward\",round=~\"$round|\",player_id=\"${player_ids}\"}))",
+          "expr": "sum(tig_player_data{metric=\"round_earnings\",round=~\"$round|\",player_id=\"${player_ids}\"})",
+          "hide": true,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\",player_id=\"${player_ids}\"}[24h]) / 1440)",
           "format": "table",
           "hide": true,
           "instant": true,
@@ -3079,8 +3116,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "tig_block_info{metric=\"blocks_per_round\",round=~\"$round|\"}",
-          "format": "table",
+          "expr": "tig_block_info{metric=\"round_blocks_left\",round=~\"$round|\"}",
           "hide": true,
           "instant": true,
           "legendFormat": "__auto",
@@ -3092,7 +3128,7 @@
             "type": "__expr__",
             "uid": "${DS_EXPRESSION}"
           },
-          "expression": "$A*$B",
+          "expression": "$D+($A*$B)",
           "hide": false,
           "refId": "C",
           "type": "math"
@@ -3130,7 +3166,7 @@
         "x": 6,
         "y": 39
       },
-      "id": 45,
+      "id": 74,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -3156,7 +3192,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(sum(tig_player_data{metric=\"reward\",round=~\"$round|\",player_id=\"${player_ids}\"}))*1440",
+          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\",player_id=\"${player_ids}\"}[24h]))",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -3196,7 +3232,7 @@
         "x": 9,
         "y": 39
       },
-      "id": 50,
+      "id": 75,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -3222,7 +3258,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(sum(tig_player_data{metric=\"reward\",round=~\"$round|\",player_id=\"${player_ids}\"}))*1440 * 30",
+          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\",player_id=\"${player_ids}\"}[24h]))*30",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -3471,7 +3507,7 @@
         "x": 12,
         "y": 41
       },
-      "id": 33,
+      "id": 34,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -3497,7 +3533,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "tig_player_data{metric=\"imbalance_penalty\",player_id=\"${player_ids}\",round=~\"$round|\"}",
+          "expr": "tig_player_data{metric=\"imbalance\",player_id=\"${player_ids}\",round=~\"$round|\"}",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -3505,7 +3541,7 @@
           "refId": "A"
         }
       ],
-      "title": "Penalty",
+      "title": "Imbalance",
       "type": "stat"
     },
     {
@@ -3641,7 +3677,7 @@
             "uid": "-- Dashboard --"
           },
           "hide": true,
-          "panelId": 63,
+          "panelId": 73,
           "refId": "A"
         }
       ],
@@ -3651,7 +3687,7 @@
           "id": "calculateField",
           "options": {
             "binary": {
-              "left": "C {__name__=\"tig_block_info\", instance=\"127.0.0.1:5002\", job=\"tig\", metric=\"blocks_per_round\", round=\"38\"}",
+              "left": "C {__name__=\"tig_block_info\", instance=\"127.0.0.1:5002\", job=\"tig\", metric=\"round_blocks_left\", round=\"38\"}",
               "operator": "*",
               "right": "$tig_price"
             },
@@ -3719,7 +3755,7 @@
             "type": "datasource",
             "uid": "-- Dashboard --"
           },
-          "panelId": 45,
+          "panelId": 74,
           "refId": "A"
         }
       ],
@@ -3797,7 +3833,7 @@
             "type": "datasource",
             "uid": "-- Dashboard --"
           },
-          "panelId": 50,
+          "panelId": 75,
           "refId": "A"
         }
       ],
@@ -3852,7 +3888,7 @@
         "x": 12,
         "y": 43
       },
-      "id": 34,
+      "id": 33,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -3878,7 +3914,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "tig_player_data{metric=\"imbalance\",player_id=\"${player_ids}\",round=~\"$round|\"}",
+          "expr": "tig_player_data{metric=\"imbalance_penalty\",player_id=\"${player_ids}\",round=~\"$round|\"}",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -3886,7 +3922,7 @@
           "refId": "A"
         }
       ],
-      "title": "Imbalance",
+      "title": "Penalty",
       "type": "stat"
     },
     {
@@ -4362,8 +4398,8 @@
   "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {},
   "timezone": "browser",
-  "title": "The Innovation Game Dashboard",
-  "uid": "fdvkj04rzjugwe",
-  "version": 6,
+  "title": "The Innovation Game Dashboard3",
+  "uid": "fdvkj04rzjugwf",
+  "version": 7,
   "weekStart": ""
 }
