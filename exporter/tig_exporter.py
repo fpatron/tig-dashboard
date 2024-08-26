@@ -86,43 +86,45 @@ def filter_and_record_metrics(last_block, price_data, players_data, innovators_d
         player_id = player.get('id', '').lower()
         if player_id in player_ids:
             block_data = player.get('block_data', {})
-
-            for key, value in block_data.items():
-                if key == 'num_qualifiers_by_challenge':
-                    for challenge_id, num_qualifiers in value.items():
-                        challenge_name = challenges.get(challenge_id, "unknown")
-                        challenge_metric.labels(
-                            round=round_number,
-                            player_id=player_id,
-                            metric='num_qualifiers_by_challenge',
-                            challenge_id=challenge_id, 
-                            challenge_name=challenge_name
-                        ).set(num_qualifiers)
-                elif key == 'cutoff':
-                    player_metric.labels(round=round_number, player_id=player_id, metric=key).set(value)
-                else:
-                    converted_value = 0
-                    if isinstance(value, str):
-                        try:
-                            converted_value = float(value) / 1e18
-                        except ValueError:
+            if block_data and block_data.items():
+                for key, value in block_data.items():
+                    if value:
+                        if key == 'num_qualifiers_by_challenge':
+                            for challenge_id, num_qualifiers in value.items():
+                                challenge_name = challenges.get(challenge_id, "unknown")
+                                challenge_metric.labels(
+                                    round=round_number,
+                                    player_id=player_id,
+                                    metric='num_qualifiers_by_challenge',
+                                    challenge_id=challenge_id, 
+                                    challenge_name=challenge_name
+                                ).set(num_qualifiers)
+                        elif key == 'cutoff':
+                            player_metric.labels(round=round_number, player_id=player_id, metric=key).set(value)
+                        else:
                             converted_value = 0
-                    player_metric.labels(round=round_number, player_id=player_id, metric=key).set(converted_value)
+                            if isinstance(value, str):
+                                try:
+                                    converted_value = float(value) / 1e18
+                                except ValueError:
+                                    converted_value = 0
+                            player_metric.labels(round=round_number, player_id=player_id, metric=key).set(converted_value)
     
     for innovator in innovators_data:
         innovator_id = innovator.get('id', '').lower()
         if innovator_id in innovator_ids:
             block_data = innovator.get('block_data', {})
-
-            for key, value in block_data.items():
-                converted_value = 0
-                if isinstance(value, str):
-                    try:
-                        converted_value = float(value) / 1e18
-                    except ValueError:
+            if block_data and block_data.items():
+                for key, value in block_data.items():
+                    if value:
                         converted_value = 0
-                logger.info(f"Add for player {innovator_id} key {key} value {converted_value}")
-                innovator_metric.labels(round=round_number, player_id=innovator_id, metric=key).set(converted_value)
+                        if isinstance(value, str):
+                            try:
+                                converted_value = float(value) / 1e18
+                            except ValueError:
+                                converted_value = 0
+                        logger.info(f"Add for player {innovator_id} key {key} value {converted_value}")
+                        innovator_metric.labels(round=round_number, player_id=innovator_id, metric=key).set(converted_value)
 
     for algo in algorithms_data:
         algo_id = algo.get('id')
