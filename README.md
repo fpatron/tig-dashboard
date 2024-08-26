@@ -11,6 +11,7 @@ It is preferable to have your own Grafana server for monitoring your nodes. But 
 To make the dashboard work, you need:
 * Grafana (dashboard)
 * Victoria Metrics (metrics service)
+* A server running 24/7
 
 ## Quick start
 
