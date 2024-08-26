@@ -60,7 +60,7 @@ sudo docker compose up -d
 ```
 * Create your own Grafana instance on a VM or server of your choice
 
-### Installing the TIG data exporter
+## Installing the TIG data exporter
 
 It is necessary to install the custom exporter in order to send custom metrics to grafana:
 
