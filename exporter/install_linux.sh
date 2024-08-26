@@ -73,11 +73,11 @@ install_tig_exporter() {
     # Updating python script
     if [ ! -z "$player_ids" ]
     then
-        sed -i "s|PLAYER_IDS = []|PLAYER_IDS = $player_ids|g" ./tig_exporter.py
+        sed -i "s|PLAYER_IDS = \[\]|PLAYER_IDS = $player_ids|g" tig_exporter.py
     fi
     if [ ! -z "$innovator_ids" ]
     then
-        sed -i "s|INNOVATOR_IDS = []|INNOVATOR_IDS = $innovator_ids|g" ./tig_exporter.py
+        sed -i "s|INNOVATOR_IDS = \[\]|INNOVATOR_IDS = $innovator_ids|g" tig_exporter.py
     fi
 }
 
@@ -130,6 +130,7 @@ configure_grafana_alloy() {
 
     # Restart Alloy service
     echo "Restarting Grafana Alloy service..."
+    sudo systemctl daemon-reload
     sudo systemctl restart alloy
 }
 
