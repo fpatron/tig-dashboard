@@ -119,14 +119,22 @@ install_grafana_alloy() {
 configure_grafana_alloy() {
     echo "Configuring Grafana Alloy..."
     sudo mkdir -p /etc/alloy
-    wget https://raw.githubusercontent.com/fpatron/tig-dashboard/master/alloy/config.alloy -O /tmp/config.alloy
 
-    # Replace variables in the config file
-    sed -i "s|<PROMETHEUS_ENDPOINT>|$1|g" /tmp/config.alloy
-    sed -i "s|<PROMETHEUS_USERNAME>|$2|g" /tmp/config.alloy
-    sed -i "s|<PROMETHEUS_PASSWORD>|$3|g" /tmp/config.alloy
+    if sudo test -f /etc/alloy/config.alloy
+        wget https://raw.githubusercontent.com/fpatron/tig-dashboard/master/alloy/config_exporter.alloy -O /tmp/config.alloy
+        sudo more /tmp/config.alloy >> /etc/alloy/config.alloy
+        \rm /tmp/config.alloy
+    then
+    else
+        wget https://raw.githubusercontent.com/fpatron/tig-dashboard/master/alloy/config.alloy -O /tmp/config.alloy
 
-    sudo mv /tmp/config.alloy /etc/alloy/config.alloy
+        # Replace variables in the config file
+        sed -i "s|<PROMETHEUS_ENDPOINT>|$1|g" /tmp/config.alloy
+        sed -i "s|<PROMETHEUS_USERNAME>|$2|g" /tmp/config.alloy
+        sed -i "s|<PROMETHEUS_PASSWORD>|$3|g" /tmp/config.alloy
+
+        sudo mv /tmp/config.alloy /etc/alloy/config.alloy
+    fi
 
     # Restart Alloy service
     echo "Restarting Grafana Alloy service..."
