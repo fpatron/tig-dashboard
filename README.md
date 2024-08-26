@@ -160,8 +160,15 @@ sudo systemctl restart alloy
 
 Go to your Grafana instance
 
-1. Add a datasource for Prometheus
+1. Install the Infinity plugin
+    * Go to Home > Administration > Plugins and data > Plugins
+    * Note: By default, only installed plugins are displayed. Switch to "All" mode (top right).
+    * Search for the Infinity plugin and install it
+
+2. Add a datasource for Infinity and Prometheus
     * Go to Home > Data sources
+    * Click on the "Add new data sources" button
+    * Search for "Infinity"
     * Click on "Save & test"
     * Click on the "Add new data sources" button
     * Search for "Prometheus"
