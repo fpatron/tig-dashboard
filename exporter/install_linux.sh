@@ -121,10 +121,10 @@ configure_grafana_alloy() {
     sudo mkdir -p /etc/alloy
 
     if sudo test -f /etc/alloy/config.alloy
+    then
         wget https://raw.githubusercontent.com/fpatron/tig-dashboard/master/alloy/config_exporter.alloy -O /tmp/config.alloy
         sudo more /tmp/config.alloy >> /etc/alloy/config.alloy
         \rm /tmp/config.alloy
-    then
     else
         wget https://raw.githubusercontent.com/fpatron/tig-dashboard/master/alloy/config.alloy -O /tmp/config.alloy
 
