@@ -1489,7 +1489,7 @@
           "id": "calculateField",
           "options": {
             "binary": {
-              "left": "sum(tig_innovator_data{metric=\"round_earnings\",round=\"38\"})",
+              "left": "sum(tig_innovator_data{metric=\"round_earnings\",round=~\"38|\"})",
               "operator": "*",
               "right": "$tig_price"
             },
@@ -2570,7 +2570,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue"
+                "color": "blue",
+                "value": null
               }
             ]
           },
@@ -2643,7 +2644,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2805,7 +2807,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue"
+                "color": "blue",
+                "value": null
               }
             ]
           }
@@ -2901,7 +2904,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue"
+                "color": "blue",
+                "value": null
               }
             ]
           }
@@ -4412,6 +4416,6 @@
   "timezone": "browser",
   "title": "The Innovation Game Dashboard",
   "uid": "fdvkj04rzjugwf",
-  "version": 11,
+  "version": 12,
   "weekStart": ""
 }
