@@ -177,7 +177,7 @@ Go to your Grafana instance
 
 2. Import the dashboard
     * Go to Home > Dashboard
-    * Download the dashboard in [JSON format](https://raw.githubusercontent.com/fpatron/tig-dashboard/master/grafana/The%20Innovation%20Game%20-%20Dashboard.json)
+    * Download the dashboard in [JSON format](https://raw.githubusercontent.com/fpatron/tig-dashboard/master/grafana/tig-dashboard.json)
     * Click on the "New" > "Import" button
     * Upload the dashboard in JSON format
     * Select the various datasources
