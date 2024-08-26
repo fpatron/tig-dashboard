@@ -430,7 +430,7 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "# Donate!\n\n[$donate_address](https://basescan.org/address/$donate_address)",
+        "content": "# Support us\n[$donate_address](https://basescan.org/address/$donate_address)",
         "mode": "markdown"
       },
       "pluginVersion": "11.0.0",
@@ -1138,7 +1138,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(increase(tig_innovator_data{metric=\"round_earnings\",round=~\"$round|\"}[24h]) / 1440)",
+          "expr": "sum(increase(tig_innovator_data{metric=\"round_earnings\",round=~\"$round|\"}[${stat_range_time:text}]) / (${stat_range_time:value}*60))",
           "format": "table",
           "hide": true,
           "instant": true,
@@ -1731,7 +1731,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\"}[24h]) / 1440)",
+          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\"}[${stat_range_time:text}]) / (${stat_range_time:value}*60))",
           "format": "table",
           "hide": true,
           "instant": true,
@@ -1822,7 +1822,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\"}[24h]))",
+          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\"}[${stat_range_time:text}]))*(24/${stat_range_time:value})",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -1888,7 +1888,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\"}[24h]))*30",
+          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\"}[${stat_range_time:text}]))*(24/${stat_range_time:value})*30",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -2571,7 +2571,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue"
+                "color": "blue",
+                "value": null
               }
             ]
           },
@@ -2644,7 +2645,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2806,7 +2808,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue"
+                "color": "blue",
+                "value": null
               }
             ]
           }
@@ -2902,7 +2905,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue"
+                "color": "blue",
+                "value": null
               }
             ]
           }
@@ -2977,7 +2981,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -3042,7 +3047,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple"
+                "color": "purple",
+                "value": null
               }
             ]
           }
@@ -3095,7 +3101,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\",player_id=\"${player_ids}\"}[24h]) / 1440)",
+          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\",player_id=\"${player_ids}\"}[${stat_range_time:text}]) / (${stat_range_time:value}*60))",
           "format": "table",
           "hide": true,
           "instant": true,
@@ -3146,7 +3152,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple"
+                "color": "purple",
+                "value": null
               }
             ]
           }
@@ -3185,7 +3192,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\",player_id=\"${player_ids}\"}[24h]))",
+          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\",player_id=\"${player_ids}\"}[${stat_range_time:text}]))*(24/${stat_range_time:value})",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -3211,7 +3218,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple"
+                "color": "purple",
+                "value": null
               }
             ]
           }
@@ -3250,7 +3258,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\",player_id=\"${player_ids}\"}[24h]))*30",
+          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\",player_id=\"${player_ids}\"}[${stat_range_time:text}]))*(24/${stat_range_time:value})*30",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -3277,7 +3285,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue"
+                "color": "blue",
+                "value": null
               }
             ]
           },
@@ -3378,7 +3387,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -3482,7 +3492,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue"
+                "color": "blue",
+                "value": null
               }
             ]
           },
@@ -3548,7 +3559,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -3625,7 +3637,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple"
+                "color": "purple",
+                "value": null
               }
             ]
           },
@@ -3703,7 +3716,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple"
+                "color": "purple",
+                "value": null
               }
             ]
           },
@@ -3780,7 +3794,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple"
+                "color": "purple",
+                "value": null
               }
             ]
           },
@@ -3858,7 +3873,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue"
+                "color": "blue",
+                "value": null
               }
             ]
           },
@@ -3925,7 +3941,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue"
+                "color": "blue",
+                "value": null
               }
             ]
           },
@@ -3998,7 +4015,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -4131,7 +4149,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue"
+                "color": "blue",
+                "value": null
               }
             ]
           }
@@ -4227,7 +4246,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue"
+                "color": "blue",
+                "value": null
               }
             ]
           }
@@ -4368,6 +4388,39 @@
         "skipUrlSync": false,
         "sort": 4,
         "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "1h",
+          "value": "1"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Statistics range time",
+        "multi": false,
+        "name": "stat_range_time",
+        "options": [
+          {
+            "selected": true,
+            "text": "1h",
+            "value": "1"
+          },
+          {
+            "selected": false,
+            "text": "6h",
+            "value": "6"
+          },
+          {
+            "selected": false,
+            "text": "24h",
+            "value": "24"
+          }
+        ],
+        "query": "1h : 1,6h : 6,24h : 24",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
       }
     ]
   },
@@ -4380,6 +4433,6 @@
   "timezone": "browser",
   "title": "The Innovation Game Dashboard",
   "uid": "fdvkj04rzjugwf",
-  "version": 2,
+  "version": 8,
   "weekStart": ""
 }
