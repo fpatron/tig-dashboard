@@ -23,7 +23,7 @@ bash <(wget -qO- https://raw.githubusercontent.com/fpatron/tig-dashboard/master/
 ```
 3. Import grafana Dashboard: follow instructions [here](#import_dashboard)
 
-## Installing Grafana / Victoria Metrics / Loki <a id='install_grafana'></a>
+## Installing Grafana / Victoria Metrics <a id='install_grafana'></a>
 
 You have multiple choices to create your Grafana instance:
 
@@ -142,7 +142,7 @@ Replace the following tags with your own information:
 * <PROMETHEUS_USERNAME> (optional)
 * <PROMETHEUS_PASSWORD> (optional)
 
-If you use the Grafana Cloud suite, you will need to generate an API key for Prometheus and Loki.
+If you use the Grafana Cloud suite, you will need to generate an API key for Prometheus.
 Replace the Prometheus password with this key.
 
 Restart alloy 
@@ -156,23 +156,15 @@ sudo systemctl restart alloy
 
 Go to your Grafana instance
 
-
-1. Install the Infinity plugin
-    * Go to Home > Administration > Plugins and data > Plugins
-    * Note: By default, only installed plugins are displayed. Switch to "All" mode (top right).
-    * Search for the Infinity plugin and install it
-
-2. Add a datasource for Infinity, Loki and Prometheus
+1. Add a datasource for Prometheus
     * Go to Home > Data sources
-    * Click on the "Add new data sources" button
-    * Search for "Infinity"
     * Click on "Save & test"
     * Click on the "Add new data sources" button
     * Search for "Prometheus"
     * Connection : Prometheus URL : http://192.168.X.X:9090    (put the IP of the computer running docker)
     * Click on "Save & test"
 
-3. Import the dashboard
+2. Import the dashboard
     * Go to Home > Dashboard
     * Download the dashboard in [JSON format](https://raw.githubusercontent.com/fpatron/tig-dashboard/master/grafana/The%20Innovation%20Game%20-%20Dashboard.json)
     * Click on the "New" > "Import" button

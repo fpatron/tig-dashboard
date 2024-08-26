@@ -9,14 +9,6 @@
       "pluginName": "Prometheus"
     },
     {
-      "name": "DS_YESOREYERAM-INFINITY-DATASOURCE",
-      "label": "yesoreyeram-infinity-datasource",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "yesoreyeram-infinity-datasource",
-      "pluginName": "Infinity"
-    },
-    {
       "name": "DS_EXPRESSION",
       "label": "Expression",
       "description": "",
@@ -4372,6 +4364,6 @@
   "timezone": "browser",
   "title": "The Innovation Game Dashboard",
   "uid": "fdvkj04rzjugwe",
-  "version": 5,
+  "version": 6,
   "weekStart": ""
 }
