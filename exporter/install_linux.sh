@@ -53,9 +53,6 @@ install_tig_exporter() {
     mkdir -p ~/tig_exporter
     cd ~/tig_exporter
 
-    username=$(whoami)
-    exporter_path=$(pwd)
-
     echo "Downloading the TIG exporter script and requirements..."
     wget https://raw.githubusercontent.com/fpatron/tig-dashboard/master/exporter/tig_exporter.py -O tig_exporter.py
     wget https://raw.githubusercontent.com/fpatron/tig-dashboard/master/exporter/requirements.txt -O requirements.txt
@@ -71,19 +68,22 @@ install_tig_exporter() {
     venv/bin/pip install -r requirements.txt
 
     # Updating python script
-    if [ ! -z "$player_ids" ]
+    if [ ! -z "$1" ]
     then
-        sed -i "s|PLAYER_IDS = \[\]|PLAYER_IDS = $player_ids|g" tig_exporter.py
+        sed -i "s|PLAYER_IDS = \[\]|PLAYER_IDS = $1|g" tig_exporter.py
     fi
-    if [ ! -z "$innovator_ids" ]
+    if [ ! -z "$2" ]
     then
-        sed -i "s|INNOVATOR_IDS = \[\]|INNOVATOR_IDS = $innovator_ids|g" tig_exporter.py
+        sed -i "s|INNOVATOR_IDS = \[\]|INNOVATOR_IDS = $2|g" tig_exporter.py
     fi
 }
 
 # Install TIG service
 install_tig_service() {
     # Create the systemd service file
+    username=$(whoami)
+    exporter_path=$(pwd)
+
     echo "Creating systemd service file for TIG exporter..."
     sudo bash -c "cat <<EOL > /lib/systemd/system/tig_exporter.service
 [Unit]
@@ -122,9 +122,9 @@ configure_grafana_alloy() {
     wget https://raw.githubusercontent.com/fpatron/tig-dashboard/master/alloy/config.alloy -O /tmp/config.alloy
 
     # Replace variables in the config file
-    sed -i "s|<PROMETHEUS_ENDPOINT>|$prometheus_url|g" /tmp/config.alloy
-    sed -i "s|<PROMETHEUS_USERNAME>|$prometheus_user|g" /tmp/config.alloy
-    sed -i "s|<PROMETHEUS_PASSWORD>|$prometheus_api_key|g" /tmp/config.alloy
+    sed -i "s|<PROMETHEUS_ENDPOINT>|$1|g" /tmp/config.alloy
+    sed -i "s|<PROMETHEUS_USERNAME>|$2|g" /tmp/config.alloy
+    sed -i "s|<PROMETHEUS_PASSWORD>|$3|g" /tmp/config.alloy
 
     sudo mv /tmp/config.alloy /etc/alloy/config.alloy
 
@@ -185,14 +185,14 @@ main() {
     echo "Prometheus password: $prometheus_api_key"
 
     # Install TIG exporter
-    install_tig_exporter
+    install_tig_exporter $player_ids $innovator_ids
     install_tig_service
 
     # Install Grafana Alloy
     install_grafana_alloy
 
     # Configure Grafana Alloy
-    configure_grafana_alloy
+    configure_grafana_alloy $prometheus_url $prometheus_user $prometheus_api_key
 
     echo "Installation and setup completed successfully."
 }
