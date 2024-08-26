@@ -546,7 +546,6 @@
           },
           "decimals": 2,
           "mappings": [],
-          "noValue": "0",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -574,15 +573,12 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "sum"
           ],
           "fields": "",
           "values": false
         },
         "showPercentChange": false,
-        "text": {
-          "titleSize": 0
-        },
         "textMode": "auto",
         "wideLayout": true
       },
@@ -590,10 +586,12 @@
       "targets": [
         {
           "columns": [],
+          "computed_columns": [],
           "datasource": {
             "type": "yesoreyeram-infinity-datasource",
             "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
           },
+          "filterExpression": "",
           "filters": [],
           "format": "table",
           "global_query_id": "",
@@ -601,11 +599,12 @@
           "hide": false,
           "parser": "uql",
           "refId": "A",
-          "root_selector": "parse-json\n| project \"value\"",
+          "root_selector": "items.to\n",
           "source": "url",
+          "summarizeExpression": "",
           "type": "json",
-          "uql": "parse-json\n| where \"token.address\" == '0x0C03Ce270B4826Ec62e7DD007f0B716068639F7B'\n| project \"value\"\n",
-          "url": "https://base.blockscout.com/api/v2/addresses/$donate_address/token-balances",
+          "uql": "parse-json\n| scope \"items\"\n| where \"to.hash\" == '$donate_address'\n| project sum(\"total.value\")",
+          "url": "https://base.blockscout.com/api/v2/addresses/$donate_address/token-transfers?token=0x0C03Ce270B4826Ec62e7DD007f0B716068639F7B",
           "url_options": {
             "data": "",
             "method": "GET"
@@ -618,7 +617,7 @@
           "id": "calculateField",
           "options": {
             "binary": {
-              "left": "value",
+              "left": "sum",
               "operator": "/",
               "right": "1e18"
             },
@@ -2571,8 +2570,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               }
             ]
           },
@@ -2645,8 +2643,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2808,8 +2805,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               }
             ]
           }
@@ -2905,8 +2901,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               }
             ]
           }
@@ -2981,8 +2976,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           }
@@ -3047,8 +3041,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple",
-                "value": null
+                "color": "purple"
               }
             ]
           }
@@ -3152,8 +3145,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple",
-                "value": null
+                "color": "purple"
               }
             ]
           }
@@ -3218,8 +3210,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple",
-                "value": null
+                "color": "purple"
               }
             ]
           }
@@ -3285,8 +3276,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               }
             ]
           },
@@ -3387,8 +3377,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           }
@@ -3492,8 +3481,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               }
             ]
           },
@@ -3559,8 +3547,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -3637,8 +3624,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple",
-                "value": null
+                "color": "purple"
               }
             ]
           },
@@ -3716,8 +3702,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple",
-                "value": null
+                "color": "purple"
               }
             ]
           },
@@ -3794,8 +3779,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple",
-                "value": null
+                "color": "purple"
               }
             ]
           },
@@ -3873,8 +3857,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               }
             ]
           },
@@ -3941,8 +3924,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               }
             ]
           },
@@ -4015,8 +3997,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           }
@@ -4149,8 +4130,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               }
             ]
           }
@@ -4246,8 +4226,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               }
             ]
           }
@@ -4391,7 +4370,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "1h",
           "value": "1"
         },
@@ -4433,6 +4412,6 @@
   "timezone": "browser",
   "title": "The Innovation Game Dashboard",
   "uid": "fdvkj04rzjugwf",
-  "version": 8,
+  "version": 11,
   "weekStart": ""
 }
