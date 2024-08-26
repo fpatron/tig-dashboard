@@ -2,6 +2,8 @@
 
 This project allows you to monitor your TIG nodes directly in Grafana, providing the necessary information and facilitating tracking.
 
+https://github.com/tig-foundation/tig-monorepo
+
 <img src="dashboard.png" />
 
 ## Prerequisites
