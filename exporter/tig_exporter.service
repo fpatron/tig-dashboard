@@ -1,0 +1,13 @@
+[Unit]
+Description=TIG Exporter Service
+After=network.target
+
+[Service]
+User=<your_username>
+Group=<your_username>
+WorkingDirectory=/home/<your_username>/tig_exporter
+ExecStart=/home/<your_username>/tig_exporter/venv/bin/python /home/<your_username>/tig_exporter/tig_exporter.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
