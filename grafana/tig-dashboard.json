@@ -2445,7 +2445,7 @@
           "color": {
             "mode": "thresholds"
           },
-          "decimals": 5,
+          "decimals": 1,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -2456,7 +2456,7 @@
               }
             ]
           },
-          "unit": "none"
+          "unit": "percentunit"
         },
         "overrides": []
       },
@@ -2493,7 +2493,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(tig_player_data{metric=\"imbalance_penalty\",round=~\"$round|\"})",
+          "expr": "avg(sum(tig_player_data{metric=\"imbalance_penalty\",round=~\"$round|\"}))",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -3740,7 +3740,7 @@
           "color": {
             "mode": "thresholds"
           },
-          "decimals": 5,
+          "decimals": 1,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -3751,7 +3751,7 @@
               }
             ]
           },
-          "unit": "none"
+          "unit": "percentunit"
         },
         "overrides": []
       },
@@ -4217,6 +4217,6 @@
   "timezone": "browser",
   "title": "The Innovation Game Dashboard",
   "uid": "fdvkj04rzjugwf",
-  "version": 35,
+  "version": 4,
   "weekStart": ""
 }
