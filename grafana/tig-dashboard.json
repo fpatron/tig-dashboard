@@ -4374,7 +4374,7 @@
           "type": "prometheus",
           "uid": "${DS_VICTORIAMETRICS}"
         },
-        "definition": "label_values(player_id)",
+        "definition": "label_values(tig_player_data,player_id)",
         "hide": 0,
         "includeAll": false,
         "label": "Addresses",
@@ -4383,7 +4383,7 @@
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values(player_id)",
+          "query": "label_values(tig_player_data,player_id)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
@@ -4460,6 +4460,6 @@
   "timezone": "browser",
   "title": "The Innovation Game Dashboard",
   "uid": "fdvkj04rzjugwf",
-  "version": 21,
+  "version": 22,
   "weekStart": ""
 }
