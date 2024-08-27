@@ -1,4 +1,4 @@
 flask
 prometheus_client
 requests
-dotenv
+python-dotenv
