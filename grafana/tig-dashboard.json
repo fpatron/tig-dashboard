@@ -418,7 +418,7 @@
         "uid": "${DS_VICTORIAMETRICS}"
       },
       "gridPos": {
-        "h": 3,
+        "h": 4,
         "w": 3,
         "x": 21,
         "y": 1
@@ -430,7 +430,7 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "# Support us\n[$donate_address](https://basescan.org/address/$donate_address)",
+        "content": "# Support our work with TIG donation\n[$donate_address](https://basescan.org/address/$donate_address)",
         "mode": "markdown"
       },
       "pluginVersion": "11.0.0",
@@ -563,7 +563,7 @@
         "h": 3,
         "w": 3,
         "x": 21,
-        "y": 4
+        "y": 5
       },
       "id": 52,
       "options": {
@@ -611,7 +611,7 @@
           }
         }
       ],
-      "title": "Your donations",
+      "title": "Total donations",
       "transformations": [
         {
           "id": "calculateField",
@@ -2980,7 +2980,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -3045,7 +3046,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple"
+                "color": "purple",
+                "value": null
               }
             ]
           }
@@ -3149,7 +3151,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple"
+                "color": "purple",
+                "value": null
               }
             ]
           }
@@ -3214,7 +3217,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple"
+                "color": "purple",
+                "value": null
               }
             ]
           }
@@ -3280,7 +3284,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue"
+                "color": "blue",
+                "value": null
               }
             ]
           },
@@ -3381,7 +3386,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -3485,7 +3491,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue"
+                "color": "blue",
+                "value": null
               }
             ]
           },
@@ -3551,7 +3558,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -3628,7 +3636,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple"
+                "color": "purple",
+                "value": null
               }
             ]
           },
@@ -3706,7 +3715,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple"
+                "color": "purple",
+                "value": null
               }
             ]
           },
@@ -3783,7 +3793,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple"
+                "color": "purple",
+                "value": null
               }
             ]
           },
@@ -3861,7 +3872,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue"
+                "color": "blue",
+                "value": null
               }
             ]
           },
@@ -3928,7 +3940,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue"
+                "color": "blue",
+                "value": null
               }
             ]
           },
@@ -4001,7 +4014,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -4134,7 +4148,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue"
+                "color": "blue",
+                "value": null
               }
             ]
           }
@@ -4230,7 +4245,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue"
+                "color": "blue",
+                "value": null
               }
             ]
           }
@@ -4298,7 +4314,7 @@
           "query": "query_result(tig_block_info{metric=\"priceUsd\"})",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
-        "refresh": 1,
+        "refresh": 2,
         "regex": "/.* ([^\\ ]*) .*/",
         "skipUrlSync": false,
         "sort": 0,
@@ -4416,6 +4432,6 @@
   "timezone": "browser",
   "title": "The Innovation Game Dashboard",
   "uid": "fdvkj04rzjugwf",
-  "version": 12,
+  "version": 14,
   "weekStart": ""
 }
