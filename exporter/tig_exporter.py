@@ -4,18 +4,22 @@ import requests
 from datetime import timedelta
 import logging
 import os
+import sys
 from dotenv import load_dotenv
 
 app = Flask(__name__)
 
 load_dotenv(dotenv_path=os.getenv('SETTINGS_FILE', '/app/settings.env'))
 
-PLAYER_IDS = os.getenv('PLAYER_IDS', '').split(',')
-INNOVATOR_IDS = os.getenv('INNOVATOR_IDS', '').split(',')
+PLAYER_IDS = [player_id.strip().lower() for player_id in os.getenv('PLAYER_IDS', '').split(',')]
+INNOVATOR_IDS = [innovator_id.strip().lower() for innovator_id in os.getenv('INNOVATOR_IDS', '').split(',')]
+
+if not PLAYER_IDS or not INNOVATOR_IDS:
+    print("Error: PLAYER_IDS and INNOVATOR_IDS cannot be empty or missing.")
+    sys.exit(1)
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
-
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
