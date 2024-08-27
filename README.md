@@ -197,3 +197,10 @@ Once everything is set up, wait at least 30 minutes to get good metrics on your 
 After the initial installation, wait at least 24 hours to obtain reliable metrics.
 
 That's all! Enjoy!
+
+
+## Donations
+
+You can support our work by making a donation to this TIG address: [0x73C7A2e1C9eb014EDbad892487D4cd4FEc5B239f](https://basescan.org/token/0x0c03ce270b4826ec62e7dd007f0b716068639f7b?a=0x73C7A2e1C9eb014EDbad892487D4cd4FEc5B239f)
+
+Thanks!
