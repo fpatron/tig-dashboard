@@ -126,7 +126,7 @@ To test if the TIG exporter is working, run this command:
 curl http://127.0.0.1:5002/metrics
 ```
 
-### Installing Grafana Alloy
+### Step #3: Installing Grafana Alloy
 
 It is necessary to install the Grafana Alloy agent on your server. It will be responsible for reporting your TIG metrics.
 
@@ -138,7 +138,7 @@ sudo apt update
 sudo apt-get install alloy -y
 ```
 
-### Configuring Grafana Alloy
+### Step #4: Configuring Grafana Alloy
 
 Once the agent is installed, you need to configure it.
 The configuration file is located here:
