@@ -2140,7 +2140,7 @@
           "color": {
             "mode": "thresholds"
           },
-          "decimals": 5,
+          "decimals": 2,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -2161,7 +2161,7 @@
         "x": 12,
         "y": 22
       },
-      "id": 42,
+      "id": 43,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -2187,15 +2187,16 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(tig_player_data{metric=\"imbalance_penalty\",round=~\"$round|\"})",
+          "expr": "sum(tig_player_data{metric=\"round_earnings\",round=~\"$round|\"})/(tig_block_info{metric=\"blocks_per_round\"} - ignoring(metric)tig_block_info{metric=\"round_blocks_left\"})*60",
           "format": "table",
+          "hide": false,
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
-          "refId": "A"
+          "refId": "E"
         }
       ],
-      "title": "Penalty",
+      "title": "TIG/hour",
       "type": "stat"
     },
     {
@@ -2516,12 +2517,13 @@
         "type": "prometheus",
         "uid": "${DS_VICTORIAMETRICS}"
       },
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
-          "decimals": 5,
+          "decimals": 0,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -2542,7 +2544,7 @@
         "x": 12,
         "y": 24
       },
-      "id": 43,
+      "id": 44,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -2568,7 +2570,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(tig_player_data{metric=\"imbalance\",round=~\"$round|\"})",
+          "expr": "sum(tig_player_data{metric=\"cutoff\",round=~\"$round|\"})",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -2576,7 +2578,7 @@
           "refId": "A"
         }
       ],
-      "title": "Imbalance",
+      "title": "Cutoff",
       "type": "stat"
     },
     {
@@ -2610,7 +2612,7 @@
         "x": 12,
         "y": 26
       },
-      "id": 44,
+      "id": 42,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -2636,7 +2638,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(tig_player_data{metric=\"influence\",round=~\"$round|\"})",
+          "expr": "sum(tig_player_data{metric=\"imbalance_penalty\",round=~\"$round|\"})",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -2644,7 +2646,7 @@
           "refId": "A"
         }
       ],
-      "title": "Influence",
+      "title": "Penalty",
       "type": "stat"
     },
     {
@@ -3510,7 +3512,7 @@
           "color": {
             "mode": "thresholds"
           },
-          "decimals": 5,
+          "decimals": 2,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -3531,7 +3533,7 @@
         "x": 12,
         "y": 41
       },
-      "id": 34,
+      "id": 76,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -3557,15 +3559,16 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "tig_player_data{metric=\"imbalance\",player_id=\"${player_ids}\",round=~\"$round|\"}",
+          "expr": "sum(tig_player_data{metric=\"round_earnings\",player_id=\"${player_ids}\",round=~\"$round|\"})/(tig_block_info{metric=\"blocks_per_round\"} - ignoring(metric)tig_block_info{metric=\"round_blocks_left\"})*60",
           "format": "table",
+          "hide": false,
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
-          "refId": "A"
+          "refId": "E"
         }
       ],
-      "title": "Imbalance",
+      "title": "TIG/hour",
       "type": "stat"
     },
     {
@@ -3891,7 +3894,7 @@
           "color": {
             "mode": "thresholds"
           },
-          "decimals": 5,
+          "decimals": 0,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -3911,6 +3914,74 @@
         "w": 2,
         "x": 12,
         "y": 43
+      },
+      "id": 35,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.0.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "tig_player_data{metric=\"cutoff\",player_id=\"${player_ids}\",round=~\"$round|\"}",
+          "format": "table",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Cutoff",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_VICTORIAMETRICS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 5,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 2,
+        "x": 12,
+        "y": 45
       },
       "id": 33,
       "options": {
@@ -3947,74 +4018,6 @@
         }
       ],
       "title": "Penalty",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_VICTORIAMETRICS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "decimals": 5,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "blue",
-                "value": null
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 2,
-        "x": 12,
-        "y": 45
-      },
-      "id": 35,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.0.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_VICTORIAMETRICS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "tig_player_data{metric=\"influence\",player_id=\"${player_ids}\",round=~\"$round|\"}",
-          "format": "table",
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "A"
-        }
-      ],
-      "title": "Influence",
       "type": "stat"
     },
     {
@@ -4339,7 +4342,7 @@
           "query": "query_result(tig_block_info{metric=\"priceUsd\"})",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
-        "refresh": 2,
+        "refresh": 1,
         "regex": "/.* ([^\\ ]*) .*/",
         "skipUrlSync": false,
         "sort": 0,
@@ -4383,7 +4386,7 @@
           "query": "label_values(player_id)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
-        "refresh": 2,
+        "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
@@ -4407,7 +4410,7 @@
           "query": "label_values(round)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
-        "refresh": 2,
+        "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 4,
@@ -4457,6 +4460,6 @@
   "timezone": "browser",
   "title": "The Innovation Game Dashboard",
   "uid": "fdvkj04rzjugwf",
-  "version": 15,
+  "version": 21,
   "weekStart": ""
 }
