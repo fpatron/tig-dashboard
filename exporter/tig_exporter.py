@@ -3,12 +3,18 @@ from prometheus_client import Gauge, CollectorRegistry, generate_latest, start_h
 import requests
 from datetime import timedelta
 import logging
+import os
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 
-# TO BE UPDATED WITH YOUR ADDRESSES
-PLAYER_IDS = []
-INNOVATOR_IDS = []
+load_dotenv(dotenv_path=os.getenv('SETTINGS_FILE', '/app/settings.env'))
+
+PLAYER_IDS = os.getenv('PLAYER_IDS', '').split(',')
+INNOVATOR_IDS = os.getenv('INNOVATOR_IDS', '').split(',')
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
