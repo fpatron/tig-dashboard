@@ -1,5 +1,4 @@
 flask
 prometheus_client
 requests
-os
 dotenv
