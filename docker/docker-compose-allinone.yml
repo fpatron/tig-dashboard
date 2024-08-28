@@ -1,5 +1,6 @@
 networks:
-  grafananet:
+  proxynet:
+    name: tig_network
 
 services:
   victoriametrics:
@@ -9,13 +10,13 @@ services:
     command:
       - "--httpListenAddr=:8428"
     networks:
-      - grafananet
+      - proxynet
     restart: always
 
   grafana:
     image: grafana/grafana
     networks:
-      - grafananet
+      - proxynet
     ports:
       - "3000:3000"
     environment:

@@ -1,0 +1,33 @@
+networks:
+  tignet:
+
+services:
+  tig-exporter:
+    build: 
+      context: ./exporter
+      args:
+        - PLAYER_IDS=${PLAYER_IDS}
+        - INNOVATOR_IDS=${INNOVATOR_IDS}
+    container_name: tig-exporter
+    ports:
+      - "5002:5002"
+    hostname: exporter
+    networks:
+      - tignet
+    restart: always
+
+  grafana-alloy:
+    image: grafana/alloy:latest
+    build: 
+      context: ./alloy
+      args:
+        - PROMETHEUS_URL=${PROMETHEUS_URL}
+    container_name: grafana-alloy
+    ports:
+      - "12345:12345"
+    command: >
+      run --server.http.listen-addr=0.0.0.0:12345 --storage.path=/var/lib/alloy/data /etc/alloy/config.alloy
+    hostname: alloy
+    networks:
+      - tignet
+    restart: always
