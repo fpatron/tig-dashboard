@@ -64,15 +64,6 @@ sudo docker compose --env-file ./settings.env -f docker-compose-allinone.yml bui
 sudo docker compose -f docker-compose-allinone.yml up -d
 ```
 
-4. You can now connect to your Grafana server using the IP address of the server where you installed it.
-```
-http://X.X.X.X:3000
-```
-The default login and password are admin/admin.
-
-Now, import the Grafana dashboard by following the instructions [here](#import_dashboard).
-
-
 ### Case #2: you have a grafana server
 
 1. Prepare your environment
@@ -98,7 +89,9 @@ sudo docker compose --env-file ./settings.env -f docker-compose-exporter.yml bui
 sudo docker compose -f docker-compose-exporter.yml up -d
 ```
 
-4. You can now connect to your Grafana server using the IP address of the server where you installed it.
+### Finalize setup
+
+You can now connect to your Grafana server using the IP address of the server where you installed it.
 ```
 http://X.X.X.X:3000
 ```
