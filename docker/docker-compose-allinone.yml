@@ -2,6 +2,11 @@ networks:
   tignet:
 
 services:
+  init_grafana:
+    extends:
+      file: docker-compose-grafana.yml
+      service: init_grafana
+
   victoriametrics:
     extends:
       file: docker-compose-grafana.yml
