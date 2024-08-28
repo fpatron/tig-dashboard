@@ -1,7 +1,7 @@
 FROM grafana/alloy:latest
 ARG PROMETHEUS_URL
 
-ADD https://raw.githubusercontent.com/fpatron/tig-dashboard/docker/alloy/config_docker.alloy /etc/alloy/config.alloy
+ADD https://raw.githubusercontent.com/fpatron/tig-dashboard/master/alloy/config_docker.alloy /etc/alloy/config.alloy
 
 RUN   sed -i "s|<PROMETHEUS_ENDPOINT>|${PROMETHEUS_URL}|g" /etc/alloy/config.alloy
 RUN   sed -i "s|<PROMETHEUS_PASSWORD>||g" /etc/alloy/config.alloy

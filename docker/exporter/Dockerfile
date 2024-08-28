@@ -7,8 +7,8 @@ ENV INNOVATOR_IDS=$INNOVATOR_IDS
 
 WORKDIR /app
 
-ADD https://raw.githubusercontent.com/fpatron/tig-dashboard/docker/exporter/tig_exporter.py /app/tig_exporter.py
-ADD https://raw.githubusercontent.com/fpatron/tig-dashboard/docker/exporter/requirements.txt /app/requirements.txt
+ADD https://raw.githubusercontent.com/fpatron/tig-dashboard/master/exporter/tig_exporter.py /app/tig_exporter.py
+ADD https://raw.githubusercontent.com/fpatron/tig-dashboard/master/exporter/requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 CMD ["sh", "-c", "python tig_exporter.py $PLAYER_IDS $INNOVATOR_IDS"]
