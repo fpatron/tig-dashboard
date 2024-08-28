@@ -1,29 +1,26 @@
 networks:
-  proxynet:
-    name: tig_network
+  tignet:
 
 services:
   victoriametrics:
-    image: victoriametrics/victoria-metrics
-    ports:
-      - 9090:8428
-    command:
-      - "--httpListenAddr=:8428"
-    networks:
-      - proxynet
-    restart: always
+    extends:
+      file: docker-compose-grafana.yml
+      service: victoriametrics
 
   grafana:
-    image: grafana/grafana
-    networks:
-      - proxynet
-    ports:
-      - "3000:3000"
-    environment:
-      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
-      - GF_AUTH_ANONYMOUS_ENABLED=true
-      - GF_AUTH_BASIC_ENABLED=false
-    volumes:
-      - ./grafana:/etc/grafana/provisioning/
-    restart: always
+    extends:
+      file: docker-compose-grafana.yml
+      service: grafana
 
+  tig-exporter:
+    extends:
+      file: docker-compose-exporter.yml
+      service: tig-exporter
+
+  grafana-alloy:
+    extends:
+      file: docker-compose-exporter.yml
+      service: grafana-alloy
+    build: 
+      args:
+        - PROMETHEUS_URL=http://victoriametrics:8428/api/v1/write

@@ -11,6 +11,4 @@ ADD https://raw.githubusercontent.com/fpatron/tig-dashboard/docker/exporter/tig_
 ADD https://raw.githubusercontent.com/fpatron/tig-dashboard/docker/exporter/requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-RUN echo $PLAYER_IDS
-
 CMD ["sh", "-c", "python tig_exporter.py $PLAYER_IDS $INNOVATOR_IDS"]
