@@ -1,0 +1,26 @@
+name: Zip Docker directory
+
+on:
+  push:
+    branches:
+      - maaster
+
+jobs:
+  zip:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Install zip
+        run: sudo apt-get install zip
+
+      - name: Zip the directory
+        run: zip -r docker.zip docker
+
+      - name: Upload the artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: docker
+          path: docker.zip
