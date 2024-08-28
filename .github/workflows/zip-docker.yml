@@ -3,7 +3,7 @@ name: Zip Docker directory
 on:
   push:
     branches:
-      - maaster
+      - master
 
 jobs:
   zip:
