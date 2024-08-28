@@ -8,33 +8,21 @@ https://github.com/tig-foundation/tig-monorepo
 
 ## Prerequisites
 
-To use this dashboard, you need:
+Depending on your setup, you can use Docker or a manual setup to install this dashboard.
+
+You need:
 * A Grafana server running 24/7
 * A server to retrieve TIG data running 24/7 (can be the same as the Grafana server)
 
 It is preferable to have your own Grafana server for monitoring your nodes. But you can use Grafana Cloud which will provide you with the necessary stack [https://grafana.com/](https://grafana.com/)
 
-## Quick start
+## Quick start <a id='quick_start'></a>
 
-If you don't want manually install this project, follow these instructions:
+You can quickly install this dashboard using Docker.
+If you don't want to use Docker, follow the manual instructions.
 
-1. Install grafana server: follow instructions [here](#install_grafana)
-2. Install alloy agent on a server running 24/7 **<span style="color:red">(this only works on Ubuntu 22.04 and Debian 12)</span>** 
-```
-bash <(wget -qO- https://raw.githubusercontent.com/fpatron/tig-dashboard/master/exporter/install_linux.sh)
-```
-3. Import grafana Dashboard: follow instructions [here](#import_dashboard)
+First, install Docker:
 
-## Manual installation
-### Step #1: installing Grafana / Victoria Metrics <a id='install_grafana'></a>
-
-You have multiple choices to create your Grafana instance:
-
-* Use Grafana Cloud: they provided a limited free plan
-* Use the provided Docker image to create your own Grafana instance
-* Use a dedidcated VM
-
-1. Install Docker
 ```
 # Add Docker's official GPG key:
 sudo apt-get update
@@ -52,6 +40,82 @@ sudo apt-get update
 
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
+
+### Case #1: you don't have a grafana server
+
+1. Prepare your environment
+```
+mkdir tig-dashboard
+cd tig-dashboard
+```
+
+2. Create a settings file called ```settings.env``` with these parameters inside:
+```
+PLAYER_IDS='["a","b","d","d"]'
+INNOVATOR_IDS='["e"]'
+```
+* PLAYER_IDS: list of your benchmarker addresses
+* INNOVATOR_IDS: list of your innovator addresses
+
+3. Install docker image
+```
+wget https://raw.githubusercontent.com/fpatron/tig-dashboard/master/docker/docker-compose-allinone.yml
+sudo docker compose --env-file ./settings.env -f docker-compose-allinone.yml build
+sudo docker compose -f docker-compose-allinone.yml up -d
+```
+
+4. You can now connect to your Grafana server using the IP address of the server where you installed it.
+```
+http://X.X.X.X:3000
+```
+The default login and password are admin/admin.
+
+Now, import the Grafana dashboard by following the instructions [here](#import_dashboard).
+
+
+### Case #2: you have a grafana server
+
+1. Prepare your environment
+```
+mkdir tig-dashboard
+cd tig-dashboard
+```
+
+2. Create a settings file called ```settings.env``` with these parameters inside:
+```
+PROMETHEUS_URL=http://0.0.0.0:9090/api/v1/write
+PLAYER_IDS='["a","b","d","d"]'
+INNOVATOR_IDS='["e"]'
+```
+* PROMETHEUS_URL: url of your grafana server (ie: PROMETHEUS_URL=http://192.168.0.100:9090/api/v1/write)
+* PLAYER_IDS: list of your benchmarker addresses
+* INNOVATOR_IDS: list of your innovator addresses
+
+3. Install docker image
+```
+wget https://raw.githubusercontent.com/fpatron/tig-dashboard/master/docker/docker-compose-exporter.yml
+sudo docker compose --env-file ./settings.env -f docker-compose-exporter.yml build
+sudo docker compose -f docker-compose-exporter.yml up -d
+```
+
+4. You can now connect to your Grafana server using the IP address of the server where you installed it.
+```
+http://X.X.X.X:3000
+```
+The default login and password are admin/admin.
+
+Now, import the Grafana dashboard by following the instructions [here](#import_dashboard).
+
+## Manual installation
+### Step #1: installing Grafana / Victoria Metrics <a id='install_grafana'></a>
+
+You have multiple choices to create your Grafana instance:
+
+* Use Grafana Cloud: they provided a limited free plan
+* Use the provided Docker image to create your own Grafana instance
+* Use a dedidcated VM
+
+1. Install Docker (see above)
 2. Install Docker image
 ```
 cd
@@ -166,7 +230,22 @@ sudo systemctl restart alloy
 
 ## Importing the Dashboard <a id='import_dashboard'></a>
 
-Go to your Grafana instance (http://X.X.X.X:3000) and log into
+Go to your Grafana instance (http://X.X.X.X:3000) and log into (admin/admin)
+
+1. Import the dashboard
+    * Go to Home > Dashboard
+    * Download the dashboard in [JSON format](https://raw.githubusercontent.com/fpatron/tig-dashboard/master/grafana/tig-dashboard.json)
+    * Click on the "New" > "Import" button
+    * Upload the dashboard in JSON format
+    * Select the requested datasources
+
+Once everything is set up, wait at least 30 minutes to get good metrics on your dashboard :)
+
+After the initial installation, wait at least 24 hours to obtain reliable metrics.
+
+That's all! Enjoy!
+
+Note: in some cases, you have to setup datasources:
 
 1. Install the Infinity plugin
     * Go to Home > Administration > Plugins and data > Plugins
@@ -183,20 +262,6 @@ By default, only installed plugins are displayed. Switch to "All" mode (top righ
     * Search for "Prometheus"
     * Connection : Prometheus URL : http://192.168.X.X:9090    (put the IP of the computer running docker)
     * Click on "Save & test"
-
-2. Import the dashboard
-    * Go to Home > Dashboard
-    * Download the dashboard in [JSON format](https://raw.githubusercontent.com/fpatron/tig-dashboard/master/grafana/tig-dashboard.json)
-    * Click on the "New" > "Import" button
-    * Upload the dashboard in JSON format
-    * Select the requested datasources
-
-
-Once everything is set up, wait at least 30 minutes to get good metrics on your dashboard :)
-
-After the initial installation, wait at least 24 hours to obtain reliable metrics.
-
-That's all! Enjoy!
 
 
 ## Donations
