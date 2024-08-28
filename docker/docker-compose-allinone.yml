@@ -1,0 +1,26 @@
+networks:
+  tignet:
+
+services:
+  victoriametrics:
+    extends:
+      file: docker-compose-grafana.yml
+      service: victoriametrics
+
+  grafana:
+    extends:
+      file: docker-compose-grafana.yml
+      service: grafana
+
+  tig-exporter:
+    extends:
+      file: docker-compose-exporter.yml
+      service: tig-exporter
+
+  grafana-alloy:
+    extends:
+      file: docker-compose-exporter.yml
+      service: grafana-alloy
+    build: 
+      args:
+        - PROMETHEUS_URL=http://victoriametrics:8428/api/v1/write

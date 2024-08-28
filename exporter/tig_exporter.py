@@ -3,6 +3,7 @@ from prometheus_client import Gauge, CollectorRegistry, generate_latest, start_h
 import requests
 from datetime import timedelta
 import logging
+import sys
 
 app = Flask(__name__)
 
@@ -10,6 +11,10 @@ app = Flask(__name__)
 PLAYER_IDS = []
 INNOVATOR_IDS = []
 
+if len(sys.argv) >= 2:
+    PLAYER_IDS = eval(sys.argv[1])
+if len(sys.argv) >= 3:
+    INNOVATOR_IDS = eval(sys.argv[2])
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -165,4 +170,4 @@ def metrics():
 
 if __name__ == '__main__':
     start_http_server(8001)
-    app.run(host='127.0.0.1', port=5002)
+    app.run(host='0.0.0.0', port=5002)
