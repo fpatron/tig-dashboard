@@ -3,23 +3,18 @@ from prometheus_client import Gauge, CollectorRegistry, generate_latest, start_h
 import requests
 from datetime import timedelta
 import logging
-import os
 import sys
-from dotenv import load_dotenv
 
 app = Flask(__name__)
 
-load_dotenv(dotenv_path=os.getenv('SETTINGS_FILE', '/app/settings.env'))
+# TO BE UPDATED WITH YOUR ADDRESSES
+PLAYER_IDS = []
+INNOVATOR_IDS = []
 
-PLAYER_IDS = [player_id.strip().lower() for player_id in os.getenv('PLAYER_IDS', '').split(',')]
-INNOVATOR_IDS = [innovator_id.strip().lower() for innovator_id in os.getenv('INNOVATOR_IDS', '').split(',')]
-
-if not PLAYER_IDS or not INNOVATOR_IDS:
-    print("Error: PLAYER_IDS and INNOVATOR_IDS cannot be empty or missing.")
-    sys.exit(1)
-
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
+if len(sys.argv) == 2:
+    PLAYER_IDS = eval(sys.argv[1])
+if len(sys.argv) == 3:
+    INNOVATOR_IDS = eval(sys.argv[2])
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -175,4 +170,4 @@ def metrics():
 
 if __name__ == '__main__':
     start_http_server(8001)
-    app.run(host='0.0.0.0', port=5002)
+    app.run(host='127.0.0.1', port=5002)
