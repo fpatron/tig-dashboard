@@ -227,7 +227,7 @@ Go to your Grafana instance (http://X.X.X.X:3000) and log into (admin/admin)
 
 1. Import the dashboard
     * Go to Home > Dashboard
-    * Download the dashboard in [JSON format](https://raw.githubusercontent.com/fpatron/tig-dashboard/master/grafana/tig-dashboard.json)
+    * Download the dashboard in [JSON format](https://raw.githubusercontent.com/fpatron/tig-dashboard/master/dashboard/tig-dashboard.json)
     * Click on the "New" > "Import" button
     * Upload the dashboard in JSON format
     * Select the requested datasources
