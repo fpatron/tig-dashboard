@@ -19,8 +19,23 @@ jobs:
       - name: Zip the directory
         run: zip -r docker.zip docker
 
-      - name: Upload the artifact
-        uses: actions/upload-artifact@v3
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: docker
-          path: docker.zip
+          tag_name: v1.0.0
+          release_name: Docker Zip
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./docker.zip
+          asset_name: docker.zip
+          asset_content_type: application/zip
