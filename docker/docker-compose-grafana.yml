@@ -2,6 +2,17 @@ networks:
   tignet:
 
 services:
+  init_grafana:
+    image: grafana/grafana:latest
+    user: root
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        chown -R 65534:65534 /var/lib/grafana
+    volumes:
+      - ./storage/grafana:/var/lib/grafana
+
   victoriametrics:
     container_name: victoriametrics
     image: victoriametrics/victoria-metrics
@@ -11,6 +22,8 @@ services:
       - "--httpListenAddr=:8428"
     networks:
       - tignet
+    volumes:
+      - ./storage/vm:/victoria-metrics-data
     restart: always
 
   grafana:
@@ -27,5 +40,9 @@ services:
       - GF_INSTALL_PLUGINS=https://github.com/grafana/grafana-infinity-datasource/releases/download/v2.9.5/yesoreyeram-infinity-datasource-2.9.5.zip;yesoreyeram-infinity-datasource
       - GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=victoriametrics-datasource
     volumes:
+      - ./storage/grafana:/var/lib/grafana
       - ./grafana/provisioning/:/etc/grafana/provisioning/
+    user: "65534"
+    depends_on:
+      - init_grafana
     restart: always
