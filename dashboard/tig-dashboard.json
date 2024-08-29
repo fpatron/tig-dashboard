@@ -173,7 +173,7 @@
             "lastNotNull"
           ],
           "fields": "",
-          "values": true
+          "values": false
         },
         "showPercentChange": false,
         "textMode": "auto",
@@ -190,9 +190,9 @@
           "exemplar": false,
           "expr": "tig_block_info{metric=\"priceUsd\",round=\"$round\"}",
           "format": "table",
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -242,7 +242,7 @@
             "lastNotNull"
           ],
           "fields": "",
-          "values": true
+          "values": false
         },
         "showPercentChange": false,
         "textMode": "auto",
@@ -258,9 +258,9 @@
           "editorMode": "code",
           "exemplar": false,
           "expr": "sum(tig_player_data{metric=\"deposit\",round=\"$round\"})",
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -513,7 +513,7 @@
             "lastNotNull"
           ],
           "fields": "",
-          "values": true
+          "values": false
         },
         "showPercentChange": false,
         "textMode": "auto",
@@ -529,9 +529,9 @@
           "editorMode": "code",
           "exemplar": false,
           "expr": "sum(tig_player_data{metric=\"deposit\",round=\"$round\"})*tig_block_info{metric=\"priceUsd\",round=\"$round\"}",
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -683,7 +683,7 @@
             "lastNotNull"
           ],
           "fields": "",
-          "values": true
+          "values": false
         },
         "showPercentChange": false,
         "textMode": "auto",
@@ -700,9 +700,9 @@
           "exemplar": false,
           "expr": "tig_block_info{metric=\"priceVolume\",round=\"$round\"}",
           "format": "table",
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -754,7 +754,7 @@
             "lastNotNull"
           ],
           "fields": "",
-          "values": true
+          "values": false
         },
         "showPercentChange": false,
         "textMode": "auto",
@@ -771,9 +771,9 @@
           "exemplar": false,
           "expr": "tig_block_info{metric=\"priceLiquidity\",round=\"$round\"}",
           "format": "table",
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -833,7 +833,7 @@
             "lastNotNull"
           ],
           "fields": "",
-          "values": true
+          "values": false
         },
         "showPercentChange": false,
         "textMode": "auto",
@@ -850,9 +850,9 @@
           "exemplar": false,
           "expr": "tig_block_info{metric=\"priceChange\",round=\"$round\"}",
           "format": "table",
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -892,7 +892,7 @@
       "id": 59,
       "options": {
         "colorMode": "value",
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
         "percentChangeColorMode": "standard",
@@ -919,9 +919,9 @@
           "expr": "tig_block_info{metric=\"round_blocks_left\",round=\"$round\"}",
           "format": "table",
           "hide": false,
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -988,9 +988,9 @@
           "exemplar": false,
           "expr": "tig_block_info{metric=\"height\",round=\"$round\"}",
           "format": "table",
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -1045,7 +1045,7 @@
       "id": 54,
       "options": {
         "colorMode": "value",
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
         "percentChangeColorMode": "standard",
@@ -1070,9 +1070,9 @@
           "editorMode": "code",
           "exemplar": false,
           "expr": "sum(tig_innovator_data{metric=\"round_earnings\",round=\"$round\"})",
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -1111,7 +1111,7 @@
       "id": 69,
       "options": {
         "colorMode": "value",
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
         "percentChangeColorMode": "standard",
@@ -1138,9 +1138,9 @@
           "expr": "(sum(tig_innovator_data{metric=\"round_earnings\",round=\"$round\"})+(sum(increase(tig_innovator_data{metric=\"round_earnings\",round=\"$round\"}[${stat_range_time:text}]) / (${stat_range_time:value}*60))*tig_block_info{metric=\"round_blocks_left\",round=\"$round\"}))",
           "format": "table",
           "hide": false,
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -1433,7 +1433,7 @@
       "id": 80,
       "options": {
         "colorMode": "value",
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
         "percentChangeColorMode": "standard",
@@ -1458,9 +1458,10 @@
           "editorMode": "code",
           "exemplar": false,
           "expr": "sum(tig_innovator_data{metric=\"round_earnings\",round=\"$round\"})*tig_block_info{metric=\"priceUsd\",round=\"$round\"}",
-          "instant": true,
+          "format": "time_series",
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -1500,7 +1501,7 @@
       "id": 81,
       "options": {
         "colorMode": "value",
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
         "percentChangeColorMode": "standard",
@@ -1526,9 +1527,9 @@
           "exemplar": false,
           "expr": "(sum(tig_innovator_data{metric=\"round_earnings\",round=\"$round\"})+(sum(increase(tig_innovator_data{metric=\"round_earnings\",round=\"$round\"}[${stat_range_time:text}]) / (${stat_range_time:value}*60))*tig_block_info{metric=\"round_blocks_left\",round=\"$round\"}))*ignoring(metric)tig_block_info{metric=\"priceUsd\",round=\"$round\"}",
           "hide": false,
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "D"
         }
       ],
@@ -1580,7 +1581,7 @@
       "id": 12,
       "options": {
         "colorMode": "value",
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
         "percentChangeColorMode": "standard",
@@ -1606,9 +1607,9 @@
           "exemplar": false,
           "expr": "sum(tig_player_data{metric=\"round_earnings\",round=\"$round\"})",
           "format": "table",
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -1647,7 +1648,7 @@
       "id": 70,
       "options": {
         "colorMode": "value",
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
         "percentChangeColorMode": "standard",
@@ -1674,9 +1675,9 @@
           "expr": "sum(tig_player_data{metric=\"round_earnings\",round=\"$round\"})+(sum(increase(tig_player_data{metric=\"round_earnings\",round=\"$round\"}[${stat_range_time:text}]) / (${stat_range_time:value}*60))*tig_block_info{metric=\"round_blocks_left\",round=\"$round\"})",
           "format": "table",
           "hide": false,
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -1715,7 +1716,7 @@
       "id": 71,
       "options": {
         "colorMode": "value",
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
         "percentChangeColorMode": "standard",
@@ -1741,9 +1742,9 @@
           "exemplar": false,
           "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=\"$round\"}[${stat_range_time:text}]))*(24/${stat_range_time:value})",
           "format": "table",
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -1782,7 +1783,7 @@
       "id": 72,
       "options": {
         "colorMode": "value",
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
         "percentChangeColorMode": "standard",
@@ -1808,9 +1809,9 @@
           "exemplar": false,
           "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=\"$round\"}[${stat_range_time:text}]))*(24/${stat_range_time:value})*30",
           "format": "table",
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -1877,9 +1878,9 @@
           "exemplar": false,
           "expr": "sum(tig_player_data{metric=\"reward\",round=\"$round\"})",
           "format": "table",
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -2086,9 +2087,9 @@
           "exemplar": false,
           "expr": "sum(tig_player_data{metric=\"reward\",round=\"$round\"})*60",
           "format": "table",
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -2128,7 +2129,7 @@
       "id": 78,
       "options": {
         "colorMode": "value",
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
         "percentChangeColorMode": "standard",
@@ -2154,9 +2155,9 @@
           "exemplar": false,
           "expr": "sum(tig_player_data{metric=\"round_earnings\",round=\"$round\"})*tig_block_info{metric=\"priceUsd\",round=\"$round\"}",
           "format": "table",
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -2196,7 +2197,7 @@
       "id": 77,
       "options": {
         "colorMode": "value",
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
         "percentChangeColorMode": "standard",
@@ -2223,9 +2224,9 @@
           "expr": "(sum(tig_player_data{metric=\"round_earnings\",round=\"$round\"})+(sum(increase(tig_player_data{metric=\"round_earnings\",round=\"$round\"}[${stat_range_time:text}]) / (${stat_range_time:value}*60))*tig_block_info{metric=\"round_blocks_left\",round=\"$round\"}))*ignoring(metric)tig_block_info{metric=\"priceUsd\",round=\"$round\"}",
           "format": "table",
           "hide": false,
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -2425,9 +2426,9 @@
           "exemplar": false,
           "expr": "avg(tig_player_data{metric=\"cutoff\",round=\"$round\"})",
           "format": "table",
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -2494,9 +2495,9 @@
           "exemplar": false,
           "expr": "avg(tig_player_data{metric=\"imbalance_penalty\",round=\"$round\"})",
           "format": "table",
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -2586,9 +2587,9 @@
           "exemplar": false,
           "expr": "last_over_time(tig_player_data{round=\"$round\"})",
           "format": "table",
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -2880,7 +2881,7 @@
       "id": 27,
       "options": {
         "colorMode": "value",
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
         "percentChangeColorMode": "standard",
@@ -2906,9 +2907,9 @@
           "exemplar": false,
           "expr": "tig_player_data{metric=\"round_earnings\",player_id=\"${player_ids}\",round=\"$round\"}",
           "format": "table",
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -2947,7 +2948,7 @@
       "id": 73,
       "options": {
         "colorMode": "value",
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
         "percentChangeColorMode": "standard",
@@ -2974,9 +2975,9 @@
           "expr": "sum(tig_player_data{metric=\"round_earnings\",round=\"$round\",player_id=\"${player_ids}\"})+(sum(increase(tig_player_data{metric=\"round_earnings\",round=\"$round\",player_id=\"${player_ids}\"}[${stat_range_time:text}]) / (${stat_range_time:value}*60))*tig_block_info{metric=\"round_blocks_left\",round=\"$round\"})",
           "format": "table",
           "hide": false,
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -3015,7 +3016,7 @@
       "id": 74,
       "options": {
         "colorMode": "value",
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
         "percentChangeColorMode": "standard",
@@ -3041,9 +3042,9 @@
           "exemplar": false,
           "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=\"$round\",player_id=\"${player_ids}\"}[${stat_range_time:text}]))*(24/${stat_range_time:value})",
           "format": "table",
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -3055,6 +3056,7 @@
         "type": "prometheus",
         "uid": "${DS_VICTORIAMETRICS}"
       },
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3082,7 +3084,7 @@
       "id": 75,
       "options": {
         "colorMode": "value",
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
         "percentChangeColorMode": "standard",
@@ -3108,9 +3110,9 @@
           "exemplar": false,
           "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=\"$round\",player_id=\"${player_ids}\"}[${stat_range_time:text}]))*(24/${stat_range_time:value})*30",
           "format": "table",
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -3177,9 +3179,9 @@
           "exemplar": false,
           "expr": "tig_player_data{metric=\"reward\",player_id=\"${player_ids}\",round=\"$round\"}",
           "format": "table",
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -3386,9 +3388,9 @@
           "exemplar": false,
           "expr": "tig_player_data{metric=\"reward\",player_id=\"${player_ids}\",round=\"$round\"}*60",
           "format": "table",
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -3719,9 +3721,9 @@
           "exemplar": false,
           "expr": "tig_player_data{metric=\"cutoff\",player_id=\"${player_ids}\",round=\"$round\"}",
           "format": "table",
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -3788,9 +3790,9 @@
           "exemplar": false,
           "expr": "tig_player_data{metric=\"imbalance_penalty\",player_id=\"${player_ids}\",round=\"$round\"}",
           "format": "table",
-          "instant": true,
+          "instant": false,
           "legendFormat": "__auto",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
@@ -4155,7 +4157,7 @@
           "uid": "${DS_VICTORIAMETRICS}"
         },
         "definition": "label_values(round)",
-        "hide": 2,
+        "hide": 0,
         "includeAll": false,
         "label": "Round",
         "multi": false,
@@ -4215,6 +4217,6 @@
   "timezone": "browser",
   "title": "The Innovation Game Dashboard",
   "uid": "fdvkj04rzjugwg",
-  "version": 10,
+  "version": 12,
   "weekStart": ""
 }
