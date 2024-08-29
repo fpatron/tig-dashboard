@@ -60,6 +60,8 @@ INNOVATOR_IDS='["e"]'
 3. Install and run docker image
 ```
 bash <(wget -qO- https://raw.githubusercontent.com/fpatron/tig-dashboard/master/docker/install_allinone.sh)
+sudo docker compose --env-file ./settings.env -f docker-compose-allinone.yml build
+sudo docker compose -f docker-compose-allinone.yml up -d
 ```
 
 ### Case #2: you have a grafana server
@@ -83,6 +85,8 @@ INNOVATOR_IDS='["e"]'
 3. Install  and run docker image
 ```
 bash <(wget -qO- https://raw.githubusercontent.com/fpatron/tig-dashboard/master/docker/install_exporter.sh)
+sudo docker compose --env-file ./settings.env -f docker-compose-exporter.yml build
+sudo docker compose -f docker-compose-exporter.yml up -d
 ```
 
 ### Finalize setup
