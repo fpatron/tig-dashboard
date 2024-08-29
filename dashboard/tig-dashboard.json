@@ -188,7 +188,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "tig_block_info{metric=\"priceUsd\"}",
+          "expr": "tig_block_info{metric=\"priceUsd\",round=\"$round\"}",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -257,7 +257,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(tig_player_data{metric=\"deposit\"})",
+          "expr": "sum(tig_player_data{metric=\"deposit\",round=\"$round\"})",
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
@@ -528,7 +528,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(tig_player_data{metric=\"deposit\"})*tig_block_info{metric=\"priceUsd\"}",
+          "expr": "sum(tig_player_data{metric=\"deposit\",round=\"$round\"})*tig_block_info{metric=\"priceUsd\",round=\"$round\"}",
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
@@ -698,7 +698,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "tig_block_info{metric=\"priceVolume\"}",
+          "expr": "tig_block_info{metric=\"priceVolume\",round=\"$round\"}",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -769,7 +769,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "tig_block_info{metric=\"priceLiquidity\"}",
+          "expr": "tig_block_info{metric=\"priceLiquidity\",round=\"$round\"}",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -848,7 +848,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "tig_block_info{metric=\"priceChange\"}",
+          "expr": "tig_block_info{metric=\"priceChange\",round=\"$round\"}",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -916,7 +916,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "tig_block_info{metric=\"round_blocks_left\"}",
+          "expr": "tig_block_info{metric=\"round_blocks_left\",round=\"$round\"}",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -986,7 +986,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "tig_block_info{metric=\"height\"}",
+          "expr": "tig_block_info{metric=\"height\",round=\"$round\"}",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -998,7 +998,7 @@
       "type": "stat"
     },
     {
-      "collapsed": true,
+      "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1006,527 +1006,534 @@
         "y": 10
       },
       "id": 53,
-      "panels": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_VICTORIAMETRICS}"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "fixedColor": "semi-dark-green",
-                "mode": "fixed"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 5,
-            "x": 0,
-            "y": 11
-          },
-          "id": 54,
-          "options": {
-            "colorMode": "value",
-            "graphMode": "area",
-            "justifyMode": "auto",
-            "orientation": "auto",
-            "percentChangeColorMode": "standard",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showPercentChange": false,
-            "textMode": "auto",
-            "wideLayout": true
-          },
-          "pluginVersion": "11.0.0",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${DS_VICTORIAMETRICS}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(tig_innovator_data{metric=\"round_earnings\",round=~\"$round|\"})",
-              "instant": true,
-              "legendFormat": "__auto",
-              "range": false,
-              "refId": "A"
-            }
-          ],
-          "title": "Innovator Round Balance (TIG)",
-          "type": "stat"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_VICTORIAMETRICS}"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "purple"
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 3,
-            "x": 5,
-            "y": 11
-          },
-          "id": 69,
-          "options": {
-            "colorMode": "value",
-            "graphMode": "area",
-            "justifyMode": "auto",
-            "orientation": "auto",
-            "percentChangeColorMode": "standard",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showPercentChange": false,
-            "textMode": "auto",
-            "wideLayout": true
-          },
-          "pluginVersion": "11.0.0",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${DS_VICTORIAMETRICS}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "(sum(tig_innovator_data{metric=\"round_earnings\",round=~\"$round|\"})+(sum(increase(tig_innovator_data{metric=\"round_earnings\",round=~\"$round|\"}[${stat_range_time:text}]) / (${stat_range_time:value}*60))*tig_block_info{metric=\"round_blocks_left\",round=~\"$round|\"}))",
-              "format": "table",
-              "hide": false,
-              "instant": true,
-              "legendFormat": "__auto",
-              "range": false,
-              "refId": "A"
-            }
-          ],
-          "title": "Estimated TIG (round) (innovator)",
-          "type": "stat"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_VICTORIAMETRICS}"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "insertNulls": false,
-                "lineInterpolation": "smooth",
-                "lineStyle": {
-                  "fill": "solid"
-                },
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "never",
-                "spanNulls": true,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
-              }
-            },
-            "overrides": [
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "sum(tig_player_data{metric=\"reward\"})"
-                },
-                "properties": [
-                  {
-                    "id": "custom.axisPlacement",
-                    "value": "right"
-                  },
-                  {
-                    "id": "displayName",
-                    "value": "Rewards"
-                  }
-                ]
-              },
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "sum(tig_player_data{metric=\"round_earnings\"})"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "Balance"
-                  }
-                ]
-              }
-            ]
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 9,
-            "x": 8,
-            "y": 11
-          },
-          "id": 56,
-          "options": {
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": false
-            },
-            "tooltip": {
-              "maxHeight": 600,
-              "mode": "single",
-              "sort": "none"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${DS_VICTORIAMETRICS}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(tig_innovator_data{metric=\"round_earnings\",round=~\"$round|\"})",
-              "instant": false,
-              "legendFormat": "__auto",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "Innovator balance (TIG)",
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_VICTORIAMETRICS}"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisBorderShow": false,
-                "axisCenteredZero": false,
-                "axisColorMode": "text",
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 0,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "insertNulls": false,
-                "lineInterpolation": "smooth",
-                "lineStyle": {
-                  "fill": "solid"
-                },
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "never",
-                "spanNulls": true,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
-              }
-            },
-            "overrides": [
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "sum(tig_player_data{metric=\"reward\"})"
-                },
-                "properties": [
-                  {
-                    "id": "custom.axisPlacement",
-                    "value": "right"
-                  },
-                  {
-                    "id": "displayName",
-                    "value": "Rewards"
-                  }
-                ]
-              },
-              {
-                "matcher": {
-                  "id": "byName",
-                  "options": "sum(tig_player_data{metric=\"round_earnings\"})"
-                },
-                "properties": [
-                  {
-                    "id": "displayName",
-                    "value": "Balance"
-                  }
-                ]
-              }
-            ]
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 7,
-            "x": 17,
-            "y": 11
-          },
-          "id": 57,
-          "options": {
-            "legend": {
-              "calcs": [],
-              "displayMode": "list",
-              "placement": "bottom",
-              "showLegend": false
-            },
-            "tooltip": {
-              "maxHeight": 600,
-              "mode": "single",
-              "sort": "none"
-            }
-          },
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${DS_VICTORIAMETRICS}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(tig_innovator_data{metric=\"reward\",round=~\"$round|\"})",
-              "instant": false,
-              "legendFormat": "__auto",
-              "range": true,
-              "refId": "A"
-            }
-          ],
-          "title": "Innovator rewards (TIG)",
-          "type": "timeseries"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_VICTORIAMETRICS}"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "fixedColor": "semi-dark-green",
-                "mode": "fixed"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green"
-                  }
-                ]
-              },
-              "unit": "currencyUSD"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 5,
-            "x": 0,
-            "y": 15
-          },
-          "id": 80,
-          "options": {
-            "colorMode": "value",
-            "graphMode": "area",
-            "justifyMode": "auto",
-            "orientation": "auto",
-            "percentChangeColorMode": "standard",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showPercentChange": false,
-            "textMode": "auto",
-            "wideLayout": true
-          },
-          "pluginVersion": "11.0.0",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${DS_VICTORIAMETRICS}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "sum(tig_innovator_data{metric=\"round_earnings\",round=~\"$round|\"})*tig_block_info{metric=\"priceUsd\"}",
-              "instant": true,
-              "legendFormat": "__auto",
-              "range": false,
-              "refId": "A"
-            }
-          ],
-          "title": "Innovator Round Balance ($)",
-          "type": "stat"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_VICTORIAMETRICS}"
-          },
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "purple"
-                  }
-                ]
-              },
-              "unit": "currencyUSD"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 4,
-            "w": 3,
-            "x": 5,
-            "y": 15
-          },
-          "id": 81,
-          "options": {
-            "colorMode": "value",
-            "graphMode": "area",
-            "justifyMode": "auto",
-            "orientation": "auto",
-            "percentChangeColorMode": "standard",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showPercentChange": false,
-            "textMode": "auto",
-            "wideLayout": true
-          },
-          "pluginVersion": "11.0.0",
-          "targets": [
-            {
-              "datasource": {
-                "type": "prometheus",
-                "uid": "${DS_VICTORIAMETRICS}"
-              },
-              "editorMode": "code",
-              "exemplar": false,
-              "expr": "(sum(tig_innovator_data{metric=\"round_earnings\",round=~\"$round|\"})+(sum(increase(tig_innovator_data{metric=\"round_earnings\",round=~\"$round|\"}[${stat_range_time:text}]) / (${stat_range_time:value}*60))*tig_block_info{metric=\"round_blocks_left\",round=~\"$round|\"}))*ignoring(metric)tig_block_info{metric=\"priceUsd\"}",
-              "hide": false,
-              "instant": true,
-              "legendFormat": "__auto",
-              "range": false,
-              "refId": "D"
-            }
-          ],
-          "title": "Estimated $ (round) (innovator)",
-          "type": "stat"
-        }
-      ],
+      "panels": [],
       "repeat": "show_innovator",
       "repeatDirection": "h",
       "title": "Innovator stats",
       "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_VICTORIAMETRICS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "semi-dark-green",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 0,
+        "y": 11
+      },
+      "id": 54,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.2.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(tig_innovator_data{metric=\"round_earnings\",round=\"$round\"})",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Innovator Round Balance (TIG)",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_VICTORIAMETRICS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "purple",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 5,
+        "y": 11
+      },
+      "id": 69,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.2.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(sum(tig_innovator_data{metric=\"round_earnings\",round=\"$round\"})+(sum(increase(tig_innovator_data{metric=\"round_earnings\",round=\"$round\"}[${stat_range_time:text}]) / (${stat_range_time:value}*60))*tig_block_info{metric=\"round_blocks_left\",round=\"$round\"}))",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Estimated TIG (round) (innovator)",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_VICTORIAMETRICS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sum(tig_player_data{metric=\"reward\"})"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              },
+              {
+                "id": "displayName",
+                "value": "Rewards"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sum(tig_player_data{metric=\"round_earnings\"})"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Balance"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 9,
+        "x": 8,
+        "y": 11
+      },
+      "id": 56,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "maxHeight": 600,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(tig_innovator_data{metric=\"round_earnings\",round=\"$round\"})",
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Innovator balance (TIG)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_VICTORIAMETRICS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sum(tig_player_data{metric=\"reward\"})"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              },
+              {
+                "id": "displayName",
+                "value": "Rewards"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sum(tig_player_data{metric=\"round_earnings\"})"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Balance"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 7,
+        "x": 17,
+        "y": 11
+      },
+      "id": 57,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "maxHeight": 600,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(tig_innovator_data{metric=\"reward\",round=\"$round\"})",
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Innovator rewards (TIG)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_VICTORIAMETRICS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "semi-dark-green",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "currencyUSD"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 0,
+        "y": 15
+      },
+      "id": 80,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.2.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(tig_innovator_data{metric=\"round_earnings\",round=\"$round\"})*tig_block_info{metric=\"priceUsd\",round=\"$round\"}",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Innovator Round Balance ($)",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_VICTORIAMETRICS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "purple",
+                "value": null
+              }
+            ]
+          },
+          "unit": "currencyUSD"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 5,
+        "y": 15
+      },
+      "id": 81,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.2.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(sum(tig_innovator_data{metric=\"round_earnings\",round=\"$round\"})+(sum(increase(tig_innovator_data{metric=\"round_earnings\",round=\"$round\"}[${stat_range_time:text}]) / (${stat_range_time:value}*60))*tig_block_info{metric=\"round_blocks_left\",round=\"$round\"}))*ignoring(metric)tig_block_info{metric=\"priceUsd\",round=\"$round\"}",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "D"
+        }
+      ],
+      "title": "Estimated $ (round) (innovator)",
+      "type": "stat"
     },
     {
       "collapsed": false,
@@ -1534,7 +1541,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 11
+        "y": 19
       },
       "id": 9,
       "panels": [],
@@ -1568,7 +1575,7 @@
         "h": 4,
         "w": 3,
         "x": 0,
-        "y": 12
+        "y": 20
       },
       "id": 12,
       "options": {
@@ -1597,7 +1604,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(tig_player_data{metric=\"round_earnings\",round=~\"$round|\"})",
+          "expr": "sum(tig_player_data{metric=\"round_earnings\",round=\"$round\"})",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -1635,7 +1642,7 @@
         "h": 4,
         "w": 3,
         "x": 3,
-        "y": 12
+        "y": 20
       },
       "id": 70,
       "options": {
@@ -1664,7 +1671,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(tig_player_data{metric=\"round_earnings\",round=~\"$round|\"})+(sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\"}[${stat_range_time:text}]) / (${stat_range_time:value}*60))*tig_block_info{metric=\"round_blocks_left\",round=~\"$round|\"})",
+          "expr": "sum(tig_player_data{metric=\"round_earnings\",round=\"$round\"})+(sum(increase(tig_player_data{metric=\"round_earnings\",round=\"$round\"}[${stat_range_time:text}]) / (${stat_range_time:value}*60))*tig_block_info{metric=\"round_blocks_left\",round=\"$round\"})",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -1703,7 +1710,7 @@
         "h": 4,
         "w": 3,
         "x": 6,
-        "y": 12
+        "y": 20
       },
       "id": 71,
       "options": {
@@ -1732,7 +1739,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\"}[${stat_range_time:text}]))*(24/${stat_range_time:value})",
+          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=\"$round\"}[${stat_range_time:text}]))*(24/${stat_range_time:value})",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -1770,7 +1777,7 @@
         "h": 4,
         "w": 3,
         "x": 9,
-        "y": 12
+        "y": 20
       },
       "id": 72,
       "options": {
@@ -1799,7 +1806,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\"}[${stat_range_time:text}]))*(24/${stat_range_time:value})*30",
+          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=\"$round\"}[${stat_range_time:text}]))*(24/${stat_range_time:value})*30",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -1839,7 +1846,7 @@
         "h": 2,
         "w": 2,
         "x": 12,
-        "y": 12
+        "y": 20
       },
       "id": 41,
       "options": {
@@ -1868,7 +1875,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(tig_player_data{metric=\"reward\",round=~\"$round|\"})",
+          "expr": "sum(tig_player_data{metric=\"reward\",round=\"$round\"})",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -1971,7 +1978,7 @@
         "h": 8,
         "w": 10,
         "x": 14,
-        "y": 12
+        "y": 20
       },
       "id": 58,
       "options": {
@@ -1995,7 +2002,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(tig_player_data{metric=\"round_earnings\",round=~\"$round|\"})",
+          "expr": "sum(tig_player_data{metric=\"round_earnings\",round=\"$round\"})",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -2008,7 +2015,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(tig_player_data{metric=\"reward\",round=~\"$round|\"})",
+          "expr": "sum(tig_player_data{metric=\"reward\",round=\"$round\"})",
           "hide": false,
           "instant": false,
           "legendFormat": "__auto",
@@ -2048,7 +2055,7 @@
         "h": 2,
         "w": 2,
         "x": 12,
-        "y": 14
+        "y": 22
       },
       "id": 82,
       "options": {
@@ -2077,7 +2084,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(tig_player_data{metric=\"reward\",round=~\"$round|\"})*60",
+          "expr": "sum(tig_player_data{metric=\"reward\",round=\"$round\"})*60",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -2103,8 +2110,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -2116,7 +2122,7 @@
         "h": 4,
         "w": 3,
         "x": 0,
-        "y": 16
+        "y": 24
       },
       "id": 78,
       "options": {
@@ -2145,7 +2151,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(tig_player_data{metric=\"round_earnings\",round=~\"$round|\"})*tig_block_info{metric=\"priceUsd\"}",
+          "expr": "sum(tig_player_data{metric=\"round_earnings\",round=\"$round\"})*tig_block_info{metric=\"priceUsd\",round=\"$round\"}",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -2171,8 +2177,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple",
-                "value": null
+                "color": "purple"
               }
             ]
           },
@@ -2184,7 +2189,7 @@
         "h": 4,
         "w": 3,
         "x": 3,
-        "y": 16
+        "y": 24
       },
       "id": 77,
       "options": {
@@ -2213,7 +2218,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(sum(tig_player_data{metric=\"round_earnings\",round=~\"$round|\"})+(sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\"}[${stat_range_time:text}]) / (${stat_range_time:value}*60))*tig_block_info{metric=\"round_blocks_left\",round=~\"$round|\"}))*ignoring(metric)tig_block_info{metric=\"priceUsd\"}",
+          "expr": "(sum(tig_player_data{metric=\"round_earnings\",round=\"$round\"})+(sum(increase(tig_player_data{metric=\"round_earnings\",round=\"$round\"}[${stat_range_time:text}]) / (${stat_range_time:value}*60))*tig_block_info{metric=\"round_blocks_left\",round=\"$round\"}))*ignoring(metric)tig_block_info{metric=\"priceUsd\",round=\"$round\"}",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -2240,8 +2245,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple",
-                "value": null
+                "color": "purple"
               }
             ]
           },
@@ -2253,7 +2257,7 @@
         "h": 4,
         "w": 3,
         "x": 6,
-        "y": 16
+        "y": 24
       },
       "id": 39,
       "options": {
@@ -2281,7 +2285,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\"}[${stat_range_time:text}]))*(24/${stat_range_time:value})*tig_block_info{metric=\"priceUsd\"}",
+          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=\"$round\"}[${stat_range_time:text}]))*(24/${stat_range_time:value})*tig_block_info{metric=\"priceUsd\",round=\"$round\"}",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -2306,8 +2310,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple",
-                "value": null
+                "color": "purple"
               }
             ]
           },
@@ -2319,7 +2322,7 @@
         "h": 4,
         "w": 3,
         "x": 9,
-        "y": 16
+        "y": 24
       },
       "id": 61,
       "options": {
@@ -2347,7 +2350,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "(sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\"}[${stat_range_time:text}]))*(24/${stat_range_time:value})*30)*tig_block_info{metric=\"priceUsd\"}",
+          "expr": "(sum(increase(tig_player_data{metric=\"round_earnings\",round=\"$round\"}[${stat_range_time:text}]))*(24/${stat_range_time:value})*30)*tig_block_info{metric=\"priceUsd\",round=\"$round\"}",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -2374,8 +2377,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               }
             ]
           },
@@ -2387,7 +2389,7 @@
         "h": 2,
         "w": 2,
         "x": 12,
-        "y": 16
+        "y": 24
       },
       "id": 44,
       "options": {
@@ -2416,7 +2418,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(tig_player_data{metric=\"cutoff\",round=~\"$round|\"})",
+          "expr": "avg(tig_player_data{metric=\"cutoff\",round=\"$round\"})",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -2443,8 +2445,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               }
             ]
           },
@@ -2456,7 +2457,7 @@
         "h": 2,
         "w": 2,
         "x": 12,
-        "y": 18
+        "y": 26
       },
       "id": 42,
       "options": {
@@ -2485,7 +2486,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(tig_player_data{metric=\"imbalance_penalty\",round=~\"$round|\"})",
+          "expr": "avg(tig_player_data{metric=\"imbalance_penalty\",round=\"$round\"})",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -2518,8 +2519,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2553,7 +2553,7 @@
         "h": 10,
         "w": 10,
         "x": 0,
-        "y": 20
+        "y": 28
       },
       "id": 24,
       "options": {
@@ -2577,7 +2577,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "last_over_time(tig_player_data{round=~\"$round|\"})",
+          "expr": "last_over_time(tig_player_data{round=\"$round\"})",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -2682,8 +2682,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               }
             ]
           }
@@ -2694,7 +2693,7 @@
         "h": 10,
         "w": 7,
         "x": 10,
-        "y": 20
+        "y": 28
       },
       "id": 16,
       "options": {
@@ -2718,7 +2717,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(tig_challenge_data{metric=\"num_qualifiers_by_challenge\",round=~\"$round|\"})",
+          "expr": "sum(tig_challenge_data{metric=\"num_qualifiers_by_challenge\",round=\"$round\"})",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -2780,8 +2779,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               }
             ]
           }
@@ -2792,7 +2790,7 @@
         "h": 10,
         "w": 7,
         "x": 17,
-        "y": 20
+        "y": 28
       },
       "id": 25,
       "options": {
@@ -2816,7 +2814,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum by(algorithm_name) (tig_algorithm_data{metric=\"num_qualifiers_by_algo\",round=~\"$round|\"})",
+          "expr": "sum by(algorithm_name) (tig_algorithm_data{metric=\"num_qualifiers_by_algo\",round=\"$round\"})",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -2832,7 +2830,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 30
+        "y": 38
       },
       "id": 26,
       "panels": [],
@@ -2856,8 +2854,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           }
@@ -2868,7 +2865,7 @@
         "h": 4,
         "w": 3,
         "x": 0,
-        "y": 31
+        "y": 39
       },
       "id": 27,
       "options": {
@@ -2897,7 +2894,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "tig_player_data{metric=\"round_earnings\",player_id=\"${player_ids}\",round=~\"$round|\"}",
+          "expr": "tig_player_data{metric=\"round_earnings\",player_id=\"${player_ids}\",round=\"$round\"}",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -2923,8 +2920,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple",
-                "value": null
+                "color": "purple"
               }
             ]
           }
@@ -2935,7 +2931,7 @@
         "h": 4,
         "w": 3,
         "x": 3,
-        "y": 31
+        "y": 39
       },
       "id": 73,
       "options": {
@@ -2964,7 +2960,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(tig_player_data{metric=\"round_earnings\",round=~\"$round|\",player_id=\"${player_ids}\"})+(sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\",player_id=\"${player_ids}\"}[${stat_range_time:text}]) / (${stat_range_time:value}*60))*tig_block_info{metric=\"round_blocks_left\",round=~\"$round|\"})",
+          "expr": "sum(tig_player_data{metric=\"round_earnings\",round=\"$round\",player_id=\"${player_ids}\"})+(sum(increase(tig_player_data{metric=\"round_earnings\",round=\"$round\",player_id=\"${player_ids}\"}[${stat_range_time:text}]) / (${stat_range_time:value}*60))*tig_block_info{metric=\"round_blocks_left\",round=\"$round\"})",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -2991,8 +2987,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple",
-                "value": null
+                "color": "purple"
               }
             ]
           }
@@ -3003,7 +2998,7 @@
         "h": 4,
         "w": 3,
         "x": 6,
-        "y": 31
+        "y": 39
       },
       "id": 74,
       "options": {
@@ -3032,7 +3027,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\",player_id=\"${player_ids}\"}[${stat_range_time:text}]))*(24/${stat_range_time:value})",
+          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=\"$round\",player_id=\"${player_ids}\"}[${stat_range_time:text}]))*(24/${stat_range_time:value})",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -3058,8 +3053,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple",
-                "value": null
+                "color": "purple"
               }
             ]
           }
@@ -3070,7 +3064,7 @@
         "h": 4,
         "w": 3,
         "x": 9,
-        "y": 31
+        "y": 39
       },
       "id": 75,
       "options": {
@@ -3099,7 +3093,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\",player_id=\"${player_ids}\"}[${stat_range_time:text}]))*(24/${stat_range_time:value})*30",
+          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=\"$round\",player_id=\"${player_ids}\"}[${stat_range_time:text}]))*(24/${stat_range_time:value})*30",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -3126,8 +3120,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               }
             ]
           },
@@ -3139,7 +3132,7 @@
         "h": 2,
         "w": 2,
         "x": 12,
-        "y": 31
+        "y": 39
       },
       "id": 32,
       "options": {
@@ -3168,7 +3161,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "tig_player_data{metric=\"reward\",player_id=\"${player_ids}\",round=~\"$round|\"}",
+          "expr": "tig_player_data{metric=\"reward\",player_id=\"${player_ids}\",round=\"$round\"}",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -3230,8 +3223,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           }
@@ -3271,7 +3263,7 @@
         "h": 8,
         "w": 10,
         "x": 14,
-        "y": 31
+        "y": 39
       },
       "id": 29,
       "options": {
@@ -3295,7 +3287,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(tig_player_data{metric=\"round_earnings\",player_id=\"${player_ids}\",round=~\"$round|\"})",
+          "expr": "sum(tig_player_data{metric=\"round_earnings\",player_id=\"${player_ids}\",round=\"$round\"})",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -3308,7 +3300,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(tig_player_data{metric=\"reward\",player_id=\"${player_ids}\",round=~\"$round|\"})",
+          "expr": "sum(tig_player_data{metric=\"reward\",player_id=\"${player_ids}\",round=\"$round\"})",
           "hide": false,
           "instant": false,
           "legendFormat": "__auto",
@@ -3335,8 +3327,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               }
             ]
           },
@@ -3348,7 +3339,7 @@
         "h": 2,
         "w": 2,
         "x": 12,
-        "y": 33
+        "y": 41
       },
       "id": 83,
       "options": {
@@ -3377,7 +3368,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "tig_player_data{metric=\"reward\",player_id=\"${player_ids}\",round=~\"$round|\"}*60",
+          "expr": "tig_player_data{metric=\"reward\",player_id=\"${player_ids}\",round=\"$round\"}*60",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -3403,8 +3394,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -3416,7 +3406,7 @@
         "h": 4,
         "w": 3,
         "x": 0,
-        "y": 35
+        "y": 43
       },
       "id": 28,
       "options": {
@@ -3444,7 +3434,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "sum(tig_player_data{metric=\"round_earnings\",round=~\"$round|\",player_id=\"${player_ids}\"})*tig_block_info{metric=\"priceUsd\"}",
+          "expr": "sum(tig_player_data{metric=\"round_earnings\",round=\"$round\",player_id=\"${player_ids}\"})*tig_block_info{metric=\"priceUsd\",round=\"$round\"}",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -3469,8 +3459,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple",
-                "value": null
+                "color": "purple"
               }
             ]
           },
@@ -3482,7 +3471,7 @@
         "h": 4,
         "w": 3,
         "x": 3,
-        "y": 35
+        "y": 43
       },
       "id": 64,
       "options": {
@@ -3510,7 +3499,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "(sum(tig_player_data{metric=\"round_earnings\",round=~\"$round|\",player_id=\"${player_ids}\"})+(sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\",player_id=\"${player_ids}\"}[${stat_range_time:text}]) / (${stat_range_time:value}*60))*tig_block_info{metric=\"round_blocks_left\",round=~\"$round|\"}))*ignoring(metric)tig_block_info{metric=\"priceUsd\"}",
+          "expr": "(sum(tig_player_data{metric=\"round_earnings\",round=\"$round\",player_id=\"${player_ids}\"})+(sum(increase(tig_player_data{metric=\"round_earnings\",round=\"$round\",player_id=\"${player_ids}\"}[${stat_range_time:text}]) / (${stat_range_time:value}*60))*tig_block_info{metric=\"round_blocks_left\",round=\"$round\"}))*ignoring(metric)tig_block_info{metric=\"priceUsd\",round=\"$round\"}",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -3535,8 +3524,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple",
-                "value": null
+                "color": "purple"
               }
             ]
           },
@@ -3548,7 +3536,7 @@
         "h": 4,
         "w": 3,
         "x": 6,
-        "y": 35
+        "y": 43
       },
       "id": 48,
       "options": {
@@ -3576,7 +3564,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\",player_id=\"${player_ids}\"}[${stat_range_time:text}]))*(24/${stat_range_time:value})*tig_block_info{metric=\"priceUsd\"}",
+          "expr": "sum(increase(tig_player_data{metric=\"round_earnings\",round=\"$round\",player_id=\"${player_ids}\"}[${stat_range_time:text}]))*(24/${stat_range_time:value})*tig_block_info{metric=\"priceUsd\",round=\"$round\"}",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -3601,8 +3589,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple",
-                "value": null
+                "color": "purple"
               }
             ]
           },
@@ -3614,7 +3601,7 @@
         "h": 4,
         "w": 3,
         "x": 9,
-        "y": 35
+        "y": 43
       },
       "id": 40,
       "options": {
@@ -3642,7 +3629,7 @@
             "uid": "${DS_VICTORIAMETRICS}"
           },
           "editorMode": "code",
-          "expr": "(sum(increase(tig_player_data{metric=\"round_earnings\",round=~\"$round|\",player_id=\"${player_ids}\"}[${stat_range_time:text}]))*(24/${stat_range_time:value})*30)*tig_block_info{metric=\"priceUsd\"}",
+          "expr": "(sum(increase(tig_player_data{metric=\"round_earnings\",round=\"$round\",player_id=\"${player_ids}\"}[${stat_range_time:text}]))*(24/${stat_range_time:value})*30)*tig_block_info{metric=\"priceUsd\",round=\"$round\"}",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -3668,8 +3655,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               }
             ]
           },
@@ -3681,7 +3667,7 @@
         "h": 2,
         "w": 2,
         "x": 12,
-        "y": 35
+        "y": 43
       },
       "id": 35,
       "options": {
@@ -3710,7 +3696,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "tig_player_data{metric=\"cutoff\",player_id=\"${player_ids}\",round=~\"$round|\"}",
+          "expr": "tig_player_data{metric=\"cutoff\",player_id=\"${player_ids}\",round=\"$round\"}",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -3737,8 +3723,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               }
             ]
           },
@@ -3750,7 +3735,7 @@
         "h": 2,
         "w": 2,
         "x": 12,
-        "y": 37
+        "y": 45
       },
       "id": 33,
       "options": {
@@ -3779,7 +3764,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "tig_player_data{metric=\"imbalance_penalty\",player_id=\"${player_ids}\",round=~\"$round|\"}",
+          "expr": "tig_player_data{metric=\"imbalance_penalty\",player_id=\"${player_ids}\",round=\"$round\"}",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -3812,8 +3797,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           }
@@ -3837,7 +3821,7 @@
         "h": 8,
         "w": 5,
         "x": 0,
-        "y": 39
+        "y": 47
       },
       "id": 36,
       "options": {
@@ -3862,7 +3846,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "last_over_time(tig_challenge_data{player_id=\"${player_ids}\",round=~\"$round|\"})",
+          "expr": "last_over_time(tig_challenge_data{player_id=\"${player_ids}\",round=\"$round\"})",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -3947,8 +3931,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               }
             ]
           }
@@ -3959,7 +3942,7 @@
         "h": 8,
         "w": 10,
         "x": 5,
-        "y": 39
+        "y": 47
       },
       "id": 30,
       "options": {
@@ -3983,7 +3966,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(tig_challenge_data{metric=\"num_qualifiers_by_challenge\",player_id=\"${player_ids}\",round=~\"$round|\"})",
+          "expr": "sum(tig_challenge_data{metric=\"num_qualifiers_by_challenge\",player_id=\"${player_ids}\",round=\"$round\"})",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -4045,8 +4028,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "blue",
-                "value": null
+                "color": "blue"
               }
             ]
           }
@@ -4057,7 +4039,7 @@
         "h": 8,
         "w": 9,
         "x": 15,
-        "y": 39
+        "y": 47
       },
       "id": 31,
       "options": {
@@ -4081,7 +4063,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum by(algorithm_name) (tig_algorithm_data{metric=\"num_qualifiers_by_algo\",player_id=\"${player_ids}\",round=~\"$round|\"})",
+          "expr": "sum by(algorithm_name) (tig_algorithm_data{metric=\"num_qualifiers_by_algo\",player_id=\"${player_ids}\",round=\"$round\"})",
           "instant": false,
           "legendFormat": "__auto",
           "range": true,
@@ -4148,7 +4130,7 @@
           "uid": "${DS_VICTORIAMETRICS}"
         },
         "definition": "label_values(round)",
-        "hide": 2,
+        "hide": 0,
         "includeAll": false,
         "label": "Round",
         "multi": false,
@@ -4208,6 +4190,6 @@
   "timezone": "browser",
   "title": "The Innovation Game Dashboard",
   "uid": "fdvkj04rzjugwg",
-  "version": 2,
+  "version": 9,
   "weekStart": ""
 }

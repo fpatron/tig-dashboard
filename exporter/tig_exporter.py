@@ -19,13 +19,6 @@ if len(sys.argv) >= 3:
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-registry = CollectorRegistry()
-block_metric = Gauge('tig_block_info', 'Block information', ['round', 'metric'], registry=registry)
-player_metric = Gauge('tig_player_data', 'Player data per block', ['round', 'player_id', 'metric'], registry=registry)
-innovator_metric = Gauge('tig_innovator_data', 'Innovator data per block', ['round', 'player_id', 'metric'], registry=registry)
-challenge_metric = Gauge('tig_challenge_data', 'Challenge data per player', ['round', 'player_id', 'metric', 'challenge_id', 'challenge_name'], registry=registry)
-algorithm_metric = Gauge('tig_algorithm_data', 'Algorithm data per player', ['round', 'player_id', 'metric', 'algorithm_id', 'algorithm_name'], registry=registry)
-
 def get_json_response(url):
     try:
         response = requests.get(url)
@@ -63,6 +56,13 @@ def get_challenges(block_id):
     return challenges
 
 def filter_and_record_metrics(last_block, price_data, players_data, innovators_data, algorithms_data, challenges):
+    registry = CollectorRegistry()
+    block_metric = Gauge('tig_block_info', 'Block information', ['round', 'metric'], registry=registry)
+    player_metric = Gauge('tig_player_data', 'Player data per block', ['round', 'player_id', 'metric'], registry=registry)
+    innovator_metric = Gauge('tig_innovator_data', 'Innovator data per block', ['round', 'player_id', 'metric'], registry=registry)
+    challenge_metric = Gauge('tig_challenge_data', 'Challenge data per player', ['round', 'player_id', 'metric', 'challenge_id', 'challenge_name'], registry=registry)
+    algorithm_metric = Gauge('tig_algorithm_data', 'Algorithm data per player', ['round', 'player_id', 'metric', 'algorithm_id', 'algorithm_name'], registry=registry)
+
     player_ids = {player_id.lower(): player_id for player_id in PLAYER_IDS}
     innovator_ids = {innovator_id.lower(): innovator_id for innovator_id in INNOVATOR_IDS}
 
@@ -141,6 +141,8 @@ def filter_and_record_metrics(last_block, price_data, players_data, innovators_d
             for player_id, num_qualifiers in num_qualifiers_by_player.items():
                 if player_id in player_ids:
                     algorithm_metric.labels(round=round_number, player_id=player_id, metric='num_qualifiers_by_algo', algorithm_id=algo_id, algorithm_name=algo_name).set(num_qualifiers)
+    
+    return registry
 
 @app.route('/metrics')
 def metrics():
@@ -156,7 +158,8 @@ def metrics():
                 challenges = get_challenges(last_block_id)
                 
                 if players_data and algorithms_data and challenges:
-                    filter_and_record_metrics(last_block, price_data, players_data, innovators_data, algorithms_data, challenges)
+                    registry = filter_and_record_metrics(last_block, price_data, players_data, innovators_data, algorithms_data, challenges)
+                    return Response(generate_latest(registry), mimetype='text/plain')
                 else:
                     logger.error("Failed to retrieve players, algorithms, or challenges data")
             else:
@@ -165,8 +168,8 @@ def metrics():
             logger.error("Failed to retrieve the last block id")
     else:
         logger.error("Failed to retrieve the last block")
-
-    return Response(generate_latest(registry), mimetype='text/plain')
+        
+    return Response("error", mimetype='text/plain')
 
 if __name__ == '__main__':
     start_http_server(8001)
