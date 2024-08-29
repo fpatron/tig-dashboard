@@ -2424,7 +2424,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg(tig_player_data{metric=\"cutoff\",round=\"$round\"})",
+          "expr": "avg(last_over_time(tig_player_data{metric=\"cutoff\",round=\"$round\"}))",
           "format": "table",
           "instant": false,
           "legendFormat": "__auto",
@@ -4217,6 +4217,6 @@
   "timezone": "browser",
   "title": "The Innovation Game Dashboard",
   "uid": "fdvkj04rzjugwg",
-  "version": 13,
+  "version": 14,
   "weekStart": ""
 }
