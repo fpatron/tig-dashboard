@@ -60,6 +60,7 @@ def filter_and_record_metrics(last_block, price_data, players_data, innovators_d
     block_metric = Gauge('tig_block_info', 'Block information', ['round', 'metric'], registry=registry)
     player_metric = Gauge('tig_player_data', 'Player data per block', ['round', 'player_id', 'metric'], registry=registry)
     innovator_metric = Gauge('tig_innovator_data', 'Innovator data per block', ['round', 'player_id', 'metric'], registry=registry)
+    innovator_algo_metric = Gauge('tig_innovator_algo_data', 'Innovator algo data per block', ['round', 'player_id', 'metric', 'algorithm_id', 'algorithm_name'], registry=registry)
     challenge_metric = Gauge('tig_challenge_data', 'Challenge data per player', ['round', 'player_id', 'metric', 'challenge_id', 'challenge_name'], registry=registry)
     algorithm_metric = Gauge('tig_algorithm_data', 'Algorithm data per player', ['round', 'player_id', 'metric', 'algorithm_id', 'algorithm_name'], registry=registry)
 
@@ -141,6 +142,13 @@ def filter_and_record_metrics(last_block, price_data, players_data, innovators_d
             for player_id, num_qualifiers in num_qualifiers_by_player.items():
                 if player_id in player_ids:
                     algorithm_metric.labels(round=round_number, player_id=player_id, metric='num_qualifiers_by_algo', algorithm_id=algo_id, algorithm_name=algo_name).set(num_qualifiers)
+
+        algo_player_id = algo.get('details', {}).get('player_id')
+        if algo_player_id in innovator_ids:
+                adoption = algo.get('block_data', {}).get('adoption')
+                if adoption:
+                    converted_adoption = float(adoption) / 1e18
+                    innovator_algo_metric.labels(round=round_number, player_id=algo_player_id, metric='adoption', algorithm_id=algo_id, algorithm_name=algo_name).set(converted_adoption)
     
     return registry
 
