@@ -16,6 +16,7 @@ You need:
 
 It is preferable to have your own Grafana server for monitoring your nodes. But you can use Grafana Cloud which will provide you with the necessary stack [https://grafana.com/](https://grafana.com/)
 
+
 ## Quick start <a id='quick_start'></a>
 
 You can quickly install this dashboard using Docker.
@@ -256,6 +257,45 @@ By default, only installed plugins are displayed. Switch to "All" mode (top righ
     * Connection : Prometheus URL : http://192.168.X.X:9090    (put the IP of the computer running docker)
     * Click on "Save & test"
 
+## How to update your TIG exporter <a id='exporter_update'></a>
+
+### Docker update
+
+Depending on whether you use case #1 or case #2 installation, use the correct Docker Compose file
+* case #1: docker-compose-allinone.yml
+* case #2: docker-compose-exporter.yml
+
+```
+cd tig-dashboard
+docker stop $(docker ps -aq)
+sudo docker compose --env-file ./settings.env -f <to be replace with docker compose file> build
+sudo docker compose -f docker-compose-allinone.yml up -d
+```
+
+### Manual update
+
+* Get files [tig_exporter.py](exporter/tig_exporter.py) [requirements.txt](exporter/requirements.txt) into
+```
+cd ~/tig_exporter
+wget https://raw.githubusercontent.com/fpatron/tig-dashboard/master/exporter/tig_exporter.py -O tig_exporter.new
+wget https://raw.githubusercontent.com/fpatron/tig-dashboard/master/exporter/requirements.txt
+```
+Replace the variables ```PLAYER_IDS``` and ```INNOVATOR_IDS``` with your TIG addresses in ```tig_exporter.new``` file.
+
+* Replace python script
+```
+mv tig_exporter.new tig_exporter.py
+```
+
+* Update python environment
+```
+source venv/bin/activate
+pip install -r requirements.txt
+```
+* Restart the service:
+```
+sudo systemctl restart tig_exporter
+```
 
 ## Donations
 

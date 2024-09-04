@@ -27,10 +27,22 @@
   "__elements": {},
   "__requires": [
     {
+      "type": "panel",
+      "id": "barchart",
+      "name": "Bar chart",
+      "version": ""
+    },
+    {
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
       "version": "11.2.0"
+    },
+    {
+      "type": "panel",
+      "id": "piechart",
+      "name": "Pie chart",
+      "version": ""
     },
     {
       "type": "datasource",
@@ -325,7 +337,7 @@
       },
       "gridPos": {
         "h": 9,
-        "w": 8,
+        "w": 13,
         "x": 8,
         "y": 1
       },
@@ -365,108 +377,23 @@
         "type": "prometheus",
         "uid": "${DS_VICTORIAMETRICS}"
       },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "decimals": 0,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "blue",
-                "value": null
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
       "gridPos": {
-        "h": 6,
-        "w": 5,
-        "x": 16,
-        "y": 1
-      },
-      "id": 6,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.2.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_VICTORIAMETRICS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "$round",
-          "format": "table",
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "A"
-        }
-      ],
-      "title": "Round",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_VICTORIAMETRICS}"
-      },
-      "gridPos": {
-        "h": 4,
+        "h": 9,
         "w": 3,
         "x": 21,
         "y": 1
       },
-      "id": 51,
+      "id": 89,
       "options": {
         "code": {
           "language": "plaintext",
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "# Support our work with TIG donation\n[$donate_address](https://basescan.org/address/$donate_address)",
-        "mode": "markdown"
+        "content": " <img src=\"data:image/png;base64, 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\" />",
+        "mode": "html"
       },
       "pluginVersion": "11.2.0",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_VICTORIAMETRICS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "tig_block_info{metric=\"rewards\"}",
-          "format": "table",
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "A"
-        }
-      ],
       "transparent": true,
       "type": "text"
     },
@@ -536,106 +463,6 @@
         }
       ],
       "title": "Wallet balance (TIG)",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "yesoreyeram-infinity-datasource",
-        "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
-      },
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "decimals": 2,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 21,
-        "y": 5
-      },
-      "id": 52,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "sum"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.2.0",
-      "targets": [
-        {
-          "columns": [],
-          "computed_columns": [],
-          "datasource": {
-            "type": "yesoreyeram-infinity-datasource",
-            "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
-          },
-          "filterExpression": "",
-          "filters": [],
-          "format": "table",
-          "global_query_id": "",
-          "groq": "*",
-          "hide": false,
-          "parser": "uql",
-          "refId": "A",
-          "root_selector": "items.to\n",
-          "source": "url",
-          "summarizeExpression": "",
-          "type": "json",
-          "uql": "parse-json\n| scope \"items\"\n| where \"to.hash\" == '$donate_address'\n| project sum(\"total.value\")",
-          "url": "https://base.blockscout.com/api/v2/addresses/$donate_address/token-transfers?token=0x0C03Ce270B4826Ec62e7DD007f0B716068639F7B",
-          "url_options": {
-            "data": "",
-            "method": "GET"
-          }
-        }
-      ],
-      "title": "Total donations",
-      "transformations": [
-        {
-          "id": "calculateField",
-          "options": {
-            "binary": {
-              "left": "sum",
-              "operator": "/",
-              "right": "1e18"
-            },
-            "mode": "binary",
-            "reduce": {
-              "reducer": "sum"
-            },
-            "replaceFields": true
-          }
-        }
-      ],
-      "transparent": true,
       "type": "stat"
     },
     {
@@ -869,6 +696,544 @@
           "color": {
             "mode": "thresholds"
           },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 5,
+        "x": 0,
+        "y": 10
+      },
+      "id": 6,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.2.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "$round",
+          "format": "table",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Round",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_VICTORIAMETRICS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [],
+          "unit": "percentunit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/.*/"
+            },
+            "properties": []
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 4,
+        "x": 5,
+        "y": 10
+      },
+      "id": 86,
+      "options": {
+        "displayLabels": [
+          "name",
+          "value"
+        ],
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false,
+          "values": [
+            "percent"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "asc"
+        }
+      },
+      "pluginVersion": "11.2.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "expr": "tig_innovator_challenge_data{challenge_name=\"satisfiability\",round=\"$round\"}",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{algorithm_name}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Satisfiability (c001)",
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_VICTORIAMETRICS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [],
+          "unit": "percentunit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/.*/"
+            },
+            "properties": []
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 4,
+        "x": 9,
+        "y": 10
+      },
+      "id": 84,
+      "options": {
+        "displayLabels": [
+          "name",
+          "value"
+        ],
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false,
+          "values": [
+            "percent"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "asc"
+        }
+      },
+      "pluginVersion": "11.2.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "expr": "tig_innovator_challenge_data{challenge_name=\"vehicle_routing\",round=\"$round\"}",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{algorithm_name}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Vehicle routing (c002)",
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_VICTORIAMETRICS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [],
+          "unit": "percentunit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/.*/"
+            },
+            "properties": []
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 4,
+        "x": 13,
+        "y": 10
+      },
+      "id": 85,
+      "options": {
+        "displayLabels": [
+          "name",
+          "value"
+        ],
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false,
+          "values": [
+            "percent"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "asc"
+        }
+      },
+      "pluginVersion": "11.2.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "expr": "tig_innovator_challenge_data{challenge_name=\"knapsack\",round=\"$round\"}",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{algorithm_name}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Knapsack (c003)",
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_VICTORIAMETRICS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [],
+          "unit": "percentunit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/.*/"
+            },
+            "properties": []
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 4,
+        "x": 17,
+        "y": 10
+      },
+      "id": 87,
+      "options": {
+        "displayLabels": [
+          "name",
+          "value"
+        ],
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false,
+          "values": [
+            "percent"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "asc"
+        }
+      },
+      "pluginVersion": "11.2.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "expr": "tig_innovator_challenge_data{challenge_name=\"vector_search\",round=\"$round\"}",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{algorithm_name}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Vector search (c004)",
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_VICTORIAMETRICS}"
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 21,
+        "y": 10
+      },
+      "id": 51,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "# Support our work with TIG donation\n[$donate_address](https://basescan.org/address/$donate_address)",
+        "mode": "markdown"
+      },
+      "pluginVersion": "11.2.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "tig_block_info{metric=\"rewards\"}",
+          "format": "table",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 21,
+        "y": 14
+      },
+      "id": 52,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.2.0",
+      "targets": [
+        {
+          "columns": [],
+          "computed_columns": [],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "${DS_YESOREYERAM-INFINITY-DATASOURCE}"
+          },
+          "filterExpression": "",
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "groq": "*",
+          "hide": false,
+          "parser": "uql",
+          "refId": "A",
+          "root_selector": "items.to\n",
+          "source": "url",
+          "summarizeExpression": "",
+          "type": "json",
+          "uql": "parse-json\n| scope \"items\"\n| where \"to.hash\" == '$donate_address'\n| project sum(\"total.value\")",
+          "url": "https://base.blockscout.com/api/v2/addresses/$donate_address/token-transfers?token=0x0C03Ce270B4826Ec62e7DD007f0B716068639F7B",
+          "url_options": {
+            "data": "",
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Total donations",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "sum",
+              "operator": "/",
+              "right": "1e18"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_VICTORIAMETRICS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -886,8 +1251,8 @@
       "gridPos": {
         "h": 3,
         "w": 2,
-        "x": 16,
-        "y": 7
+        "x": 0,
+        "y": 16
       },
       "id": 59,
       "options": {
@@ -956,8 +1321,8 @@
       "gridPos": {
         "h": 3,
         "w": 3,
-        "x": 18,
-        "y": 7
+        "x": 2,
+        "y": 16
       },
       "id": 7,
       "options": {
@@ -1003,7 +1368,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 10
+        "y": 19
       },
       "id": 53,
       "panels": [],
@@ -1040,7 +1405,7 @@
         "h": 4,
         "w": 5,
         "x": 0,
-        "y": 11
+        "y": 20
       },
       "id": 54,
       "options": {
@@ -1106,7 +1471,7 @@
         "h": 4,
         "w": 3,
         "x": 5,
-        "y": 11
+        "y": 20
       },
       "id": 69,
       "options": {
@@ -1146,6 +1511,114 @@
       ],
       "title": "Estimated TIG (round) (innovator)",
       "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_VICTORIAMETRICS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 4,
+        "x": 8,
+        "y": 20
+      },
+      "id": 88,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "11.2.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_VICTORIAMETRICS}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "last_over_time(tig_innovator_challenge_data{player_id=~\"$innovator_ids\" ,round=\"$round\"})",
+          "format": "table",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Submitted algorithms",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "__name__": true,
+              "algorithm_id": true,
+              "challenge_id": true,
+              "instance": true,
+              "job": true,
+              "metric": true,
+              "player_id": true,
+              "round": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "Time": 2,
+              "Value": 11,
+              "__name__": 3,
+              "algorithm_id": 4,
+              "algorithm_name": 1,
+              "challenge_id": 5,
+              "challenge_name": 0,
+              "instance": 6,
+              "job": 7,
+              "metric": 8,
+              "player_id": 9,
+              "round": 10
+            },
+            "renameByName": {
+              "Value": "Adoption",
+              "algorithm_name": "Algorithm",
+              "challenge_name": "Challenge"
+            }
+          }
+        }
+      ],
+      "type": "table"
     },
     {
       "datasource": {
@@ -1237,9 +1710,9 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 9,
-        "x": 8,
-        "y": 11
+        "w": 6,
+        "x": 12,
+        "y": 20
       },
       "id": 56,
       "options": {
@@ -1363,9 +1836,9 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 7,
-        "x": 17,
-        "y": 11
+        "w": 6,
+        "x": 18,
+        "y": 20
       },
       "id": 57,
       "options": {
@@ -1428,7 +1901,7 @@
         "h": 4,
         "w": 5,
         "x": 0,
-        "y": 15
+        "y": 24
       },
       "id": 80,
       "options": {
@@ -1496,7 +1969,7 @@
         "h": 4,
         "w": 3,
         "x": 5,
-        "y": 15
+        "y": 24
       },
       "id": 81,
       "options": {
@@ -1542,7 +2015,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 19
+        "y": 28
       },
       "id": 9,
       "panels": [],
@@ -1576,7 +2049,7 @@
         "h": 4,
         "w": 3,
         "x": 0,
-        "y": 20
+        "y": 29
       },
       "id": 12,
       "options": {
@@ -1643,7 +2116,7 @@
         "h": 4,
         "w": 3,
         "x": 3,
-        "y": 20
+        "y": 29
       },
       "id": 70,
       "options": {
@@ -1711,7 +2184,7 @@
         "h": 4,
         "w": 3,
         "x": 6,
-        "y": 20
+        "y": 29
       },
       "id": 71,
       "options": {
@@ -1778,7 +2251,7 @@
         "h": 4,
         "w": 3,
         "x": 9,
-        "y": 20
+        "y": 29
       },
       "id": 72,
       "options": {
@@ -1847,7 +2320,7 @@
         "h": 2,
         "w": 2,
         "x": 12,
-        "y": 20
+        "y": 29
       },
       "id": 41,
       "options": {
@@ -1979,7 +2452,7 @@
         "h": 8,
         "w": 10,
         "x": 14,
-        "y": 20
+        "y": 29
       },
       "id": 58,
       "options": {
@@ -2056,7 +2529,7 @@
         "h": 2,
         "w": 2,
         "x": 12,
-        "y": 22
+        "y": 31
       },
       "id": 82,
       "options": {
@@ -2124,7 +2597,7 @@
         "h": 4,
         "w": 3,
         "x": 0,
-        "y": 24
+        "y": 33
       },
       "id": 78,
       "options": {
@@ -2192,7 +2665,7 @@
         "h": 4,
         "w": 3,
         "x": 3,
-        "y": 24
+        "y": 33
       },
       "id": 77,
       "options": {
@@ -2261,7 +2734,7 @@
         "h": 4,
         "w": 3,
         "x": 6,
-        "y": 24
+        "y": 33
       },
       "id": 39,
       "options": {
@@ -2327,7 +2800,7 @@
         "h": 4,
         "w": 3,
         "x": 9,
-        "y": 24
+        "y": 33
       },
       "id": 61,
       "options": {
@@ -2395,7 +2868,7 @@
         "h": 2,
         "w": 2,
         "x": 12,
-        "y": 24
+        "y": 33
       },
       "id": 44,
       "options": {
@@ -2464,7 +2937,7 @@
         "h": 2,
         "w": 2,
         "x": 12,
-        "y": 26
+        "y": 35
       },
       "id": 42,
       "options": {
@@ -2561,7 +3034,7 @@
         "h": 10,
         "w": 10,
         "x": 0,
-        "y": 28
+        "y": 37
       },
       "id": 24,
       "options": {
@@ -2702,7 +3175,7 @@
         "h": 10,
         "w": 7,
         "x": 10,
-        "y": 28
+        "y": 37
       },
       "id": 16,
       "options": {
@@ -2800,7 +3273,7 @@
         "h": 10,
         "w": 7,
         "x": 17,
-        "y": 28
+        "y": 37
       },
       "id": 25,
       "options": {
@@ -2840,7 +3313,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 38
+        "y": 47
       },
       "id": 26,
       "panels": [],
@@ -2876,7 +3349,7 @@
         "h": 4,
         "w": 3,
         "x": 0,
-        "y": 39
+        "y": 48
       },
       "id": 27,
       "options": {
@@ -2943,7 +3416,7 @@
         "h": 4,
         "w": 3,
         "x": 3,
-        "y": 39
+        "y": 48
       },
       "id": 73,
       "options": {
@@ -3011,7 +3484,7 @@
         "h": 4,
         "w": 3,
         "x": 6,
-        "y": 39
+        "y": 48
       },
       "id": 74,
       "options": {
@@ -3079,7 +3552,7 @@
         "h": 4,
         "w": 3,
         "x": 9,
-        "y": 39
+        "y": 48
       },
       "id": 75,
       "options": {
@@ -3148,7 +3621,7 @@
         "h": 2,
         "w": 2,
         "x": 12,
-        "y": 39
+        "y": 48
       },
       "id": 32,
       "options": {
@@ -3280,7 +3753,7 @@
         "h": 8,
         "w": 10,
         "x": 14,
-        "y": 39
+        "y": 48
       },
       "id": 29,
       "options": {
@@ -3357,7 +3830,7 @@
         "h": 2,
         "w": 2,
         "x": 12,
-        "y": 41
+        "y": 50
       },
       "id": 83,
       "options": {
@@ -3425,7 +3898,7 @@
         "h": 4,
         "w": 3,
         "x": 0,
-        "y": 43
+        "y": 52
       },
       "id": 28,
       "options": {
@@ -3491,7 +3964,7 @@
         "h": 4,
         "w": 3,
         "x": 3,
-        "y": 43
+        "y": 52
       },
       "id": 64,
       "options": {
@@ -3557,7 +4030,7 @@
         "h": 4,
         "w": 3,
         "x": 6,
-        "y": 43
+        "y": 52
       },
       "id": 48,
       "options": {
@@ -3623,7 +4096,7 @@
         "h": 4,
         "w": 3,
         "x": 9,
-        "y": 43
+        "y": 52
       },
       "id": 40,
       "options": {
@@ -3690,7 +4163,7 @@
         "h": 2,
         "w": 2,
         "x": 12,
-        "y": 43
+        "y": 52
       },
       "id": 35,
       "options": {
@@ -3759,7 +4232,7 @@
         "h": 2,
         "w": 2,
         "x": 12,
-        "y": 45
+        "y": 54
       },
       "id": 33,
       "options": {
@@ -3807,21 +4280,36 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "fixedColor": "blue",
+            "mode": "fixed"
           },
           "custom": {
-            "align": "auto",
-            "cellOptions": {
-              "type": "auto"
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
             },
-            "inspect": false
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "blue",
                 "value": null
               }
             ]
@@ -3833,12 +4321,7 @@
               "id": "byName",
               "options": "round"
             },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 91
-              }
-            ]
+            "properties": []
           }
         ]
       },
@@ -3846,21 +4329,29 @@
         "h": 8,
         "w": 5,
         "x": 0,
-        "y": 47
+        "y": 56
       },
       "id": 36,
       "options": {
-        "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
         },
-        "showHeader": true,
-        "sortBy": []
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
       },
       "pluginVersion": "11.2.0",
       "targets": [
@@ -3902,7 +4393,7 @@
           }
         }
       ],
-      "type": "table"
+      "type": "barchart"
     },
     {
       "datasource": {
@@ -3968,7 +4459,7 @@
         "h": 8,
         "w": 10,
         "x": 5,
-        "y": 47
+        "y": 56
       },
       "id": 30,
       "options": {
@@ -4066,7 +4557,7 @@
         "h": 8,
         "w": 9,
         "x": 15,
-        "y": 47
+        "y": 56
       },
       "id": 31,
       "options": {
@@ -4206,6 +4697,30 @@
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_VICTORIAMETRICS}"
+        },
+        "definition": "label_values(tig_innovator_data,player_id)",
+        "hide": 2,
+        "includeAll": false,
+        "label": "Addresses",
+        "multi": false,
+        "name": "innovator_ids",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(tig_innovator_data,player_id)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
       }
     ]
   },
@@ -4217,6 +4732,6 @@
   "timezone": "browser",
   "title": "The Innovation Game Dashboard",
   "uid": "fdvkj04rzjugwg",
-  "version": 14,
+  "version": 25,
   "weekStart": ""
 }
