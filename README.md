@@ -269,10 +269,12 @@ Depending on whether you use case #1 or case #2 installation, use the correct Do
 cd tig-dashboard
 docker stop $(docker ps -aq)
 sudo docker compose --env-file ./settings.env -f <to be replace with docker compose file> build
-sudo docker compose -f docker-compose-allinone.yml up -d
+sudo docker compose -f <to be replace with docker compose file> up -d
 ```
 
 ### Manual update
+
+In case of manual installation
 
 * Get files [tig_exporter.py](exporter/tig_exporter.py) [requirements.txt](exporter/requirements.txt) into
 ```
