@@ -267,7 +267,7 @@ Depending on whether you use case #1 or case #2 installation, use the correct Do
 
 ```
 cd tig-dashboard
-docker stop $(docker ps -aq)
+sudo docker stop $(docker ps -aq)
 sudo docker compose --env-file ./settings.env -f <to be replace with docker compose file> build
 sudo docker compose -f <to be replace with docker compose file> up -d
 ```
